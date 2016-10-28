@@ -1,3 +1,5 @@
+Supported file types: txt, csv
+
 ==================================================
 How to initialize table properties:
 
