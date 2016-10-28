@@ -13,9 +13,9 @@ import com.smdev.model.Table;
 public class CsvFileReaderTest {
 
 	private CsvFileReader reader = null;
-	
+
 	@Before
-	public void setUp(){
+	public void setUp() {
 		this.reader = new CsvFileReader();
 	}
 
@@ -25,7 +25,7 @@ public class CsvFileReaderTest {
 		try {
 			CsvTableProps props = new CsvTableProps();
 			props.setSeparator(',');
-			
+
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
@@ -49,14 +49,14 @@ public class CsvFileReaderTest {
 			Assert.fail(e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testReadSemicolon() {
 		File file = new File(getClass().getResource("files/semicolon.csv").getFile());
 		try {
 			CsvTableProps props = new CsvTableProps();
 			props.setSeparator(';');
-			
+
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
@@ -80,14 +80,14 @@ public class CsvFileReaderTest {
 			Assert.fail(e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testReadTab() {
 		File file = new File(getClass().getResource("files/tab.csv").getFile());
 		try {
 			CsvTableProps props = new CsvTableProps();
 			props.setSeparator('\t');
-			
+
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
@@ -107,6 +107,25 @@ public class CsvFileReaderTest {
 			// validate last content row
 			Assert.assertEquals("398149", table.getRow(36634)[firstColIdx].getValue());
 			Assert.assertEquals("1", table.getRow(36634)[lastColIdx].getValue());
+		} catch (ReadFileException | ModelException e) {
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@Test
+	public void testReadSkipFirstRows() {
+		File file = new File(getClass().getResource("files/comma.csv").getFile());
+		try {
+			int rowsToSkip = 10;
+
+			CsvTableProps props = new CsvTableProps();
+			props.setSeparator(','); // optional
+			props.setSkipFirstRows(rowsToSkip); // optional
+
+			Table table = this.reader.read(props, file);
+			Assert.assertEquals(1, table.getHorizontalHeaderRows());
+			Assert.assertEquals(36635 - rowsToSkip, table.getRowsCount());
+			Assert.assertEquals(18, table.getColsCount());
 		} catch (ReadFileException | ModelException e) {
 			Assert.fail(e.getMessage());
 		}

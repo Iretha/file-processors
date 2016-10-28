@@ -11,6 +11,13 @@ import com.smdev.exc.ReadFileException;
 import com.smdev.model.Table;
 import com.smdev.processor.Importable;
 
+/**
+ * Implementation of a CSV file reader.
+ * 
+ * Example usage:
+ * 
+ * @author Ireth
+ */
 public class CsvFileReader implements Importable<CsvTableProps> {
 
 	@Override

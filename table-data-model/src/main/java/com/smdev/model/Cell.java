@@ -1,5 +1,10 @@
 package com.smdev.model;
 
+/**
+ * Model of a table cell.
+ * 
+ * @author Ireth
+ */
 public class Cell {
 
 	private Object value;

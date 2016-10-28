@@ -1,5 +1,10 @@
 package com.smdev.exc;
 
+/**
+ * Exception thrown while writing a new target file
+ * 
+ * @author Ireth
+ */
 public class WriteFileExaception extends Exception {
 
 	/** */

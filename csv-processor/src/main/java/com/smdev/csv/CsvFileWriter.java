@@ -14,6 +14,10 @@ import com.smdev.model.Cell;
 import com.smdev.model.Table;
 import com.smdev.processor.Exportable;
 
+/**
+ * Implementation of a CSV file writer.
+ * @author Ireth
+ */
 public class CsvFileWriter implements Exportable<CsvTableProps> {
 
 	@Override

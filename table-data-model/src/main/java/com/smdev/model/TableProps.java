@@ -2,6 +2,29 @@ package com.smdev.model;
 
 import com.smdev.util.FileTypes;
 
+/**
+ * Model of a table properties. They are used while reading or writing files.
+ * <br>
+ * <table>
+ * <tr>
+ * <th>Property name</th>
+ * <th>Default value</th>
+ * <th>Possible values</th>
+ * </tr>
+ * <tr>
+ * <td>name</td>
+ * <td>simpleFile</td>
+ * <td>custom</td>
+ * </tr>
+ * <tr>
+ * <td>fileType</td>
+ * <td>FileTypes.CSV</td>
+ * <td>FileTypes.*</td>
+ * </tr>
+ * </table>
+ * 
+ * @author Ireth
+ */
 public abstract class TableProps {
 
 	private String name = "simpleFile";
@@ -15,7 +38,7 @@ public abstract class TableProps {
 	public String getName() {
 		return name;
 	}
-	
+
 	public String getFileName() {
 		return getName() + "." + getFileType().getExtension();
 	}
@@ -26,10 +49,6 @@ public abstract class TableProps {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public void setFileType(FileTypes fileType) {
-		this.fileType = fileType;
 	}
 
 }
