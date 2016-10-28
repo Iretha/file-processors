@@ -6,7 +6,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import com.smdev.model.exc.ModelException;
+import com.smdev.exc.ModelException;
 
 public class TableTest {
 
@@ -17,7 +17,7 @@ public class TableTest {
 
 	@Before
 	public void setUp() {
-		this.table = new Table();
+		this.table = new Table(0);
 	}
 
 	@Test

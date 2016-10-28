@@ -3,28 +3,41 @@ package com.smdev.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.smdev.model.exc.ModelException;
-
+import com.smdev.exc.ModelException;
 
 public class Table {
 
 	private static final String NEW_LINE = "\n";
-	private final List<List<Cell>> content = new ArrayList<>();
 
-	public Table() {
+	private final List<Cell[]> content = new ArrayList<>();
+
+	private int horizontalheaderRows = 0;
+
+	public Table(int horizontalheaderRows) {
 		super();
+		this.horizontalheaderRows = horizontalheaderRows;
 	}
 
+	public Cell[] getRow(int row) {
+		// TODO validation
+		return getContent().get(row);
+	}
+
+	public int getHorizontalHeaderRows() {
+		return this.horizontalheaderRows;
+	}
+	
 	public void addRow(Object... values) throws ModelException {
 		int rowNum = getRowsCount();
-		if(rowNum != 0 && getColsCount() != values.length){
+		if (rowNum != 0 && getColsCount() != values.length) {
 			throw new ModelException("Invalid Row!");
 		}
-		
+
 		int colNum = 0;
-		List<Cell> row = new ArrayList<>();
+		Cell[] row = new Cell[values.length];
 		for (Object value : values) {
-			row.add(new Cell(rowNum, colNum++, value));
+			row[colNum] = new Cell(rowNum, colNum, value);
+			colNum++;
 		}
 		getContent().add(row);
 	}
@@ -37,14 +50,14 @@ public class Table {
 		if (col < 0 || col >= getColsCount()) {
 			throw new ModelException("Invalid col idx!");
 		}
-		return getContent().get(row).get(col);
+		return getContent().get(row)[col];
 	}
 
 	public int getColsCount() {
-		return getContent().isEmpty() ? 0 : getContent().get(0).size();
+		return getContent().isEmpty() ? 0 : getContent().get(0).length;
 	}
 
-	private List<List<Cell>> getContent() {
+	public List<Cell[]> getContent() {
 		return this.content;
 	}
 
@@ -55,7 +68,8 @@ public class Table {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		for (List<Cell> row : content) {
+
+		for (Cell[] row : content) {
 			for (Cell c : row) {
 				str.append(c.toString());
 			}
