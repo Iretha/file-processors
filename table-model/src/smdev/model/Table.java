@@ -7,6 +7,7 @@ import smdev.exc.ModelException;
 
 public class Table {
 
+	private static final String NEW_LINE = "\n";
 	private final List<List<Cell>> content = new ArrayList<>();
 
 	public Table() {
@@ -57,7 +58,7 @@ public class Table {
 			for (Cell c : row) {
 				str.append(c.toString());
 			}
-			str.append("\n");
+			str.append(NEW_LINE);
 		}
 		return str.toString();
 	}

@@ -30,7 +30,6 @@ public class TableTest {
 			assertEquals(3, this.table.getRowsCount());
 			assertEquals(1, this.table.getCell(0, 0).getValue());
 			assertNull(this.table.getCell(2, 0).getValue());
-
 		} catch (ModelException e) {
 			fail(e.getMessage());
 		}
