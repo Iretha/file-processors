@@ -1,5 +1,10 @@
 package com.smdev.exc;
 
+/**
+ * Exception thrown while creating new table model
+ * 
+ * @author Ireth
+ */
 public class ModelException extends Exception {
 
 	/** */

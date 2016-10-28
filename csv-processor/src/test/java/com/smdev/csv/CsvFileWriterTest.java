@@ -21,7 +21,7 @@ public class CsvFileWriterTest {
 		this.writer = new CsvFileWriter();
 		File file = new File(getClass().getResource("files/comma.csv").getFile());
 		CsvTableProps props = new CsvTableProps();
-		props.addSeparator(",");
+		props.setSeparator(',');
 		try {
 			this.table = new CsvFileReader().read(props, file);
 		} catch (ReadFileException | ModelException e) {
@@ -31,15 +31,33 @@ public class CsvFileWriterTest {
 		File dir = new File(getClass().getResource("files").getFile());
 		this.destinationDir = dir.getAbsolutePath();
 	}
+	
+	@Test
+	public void testWriteComma() {
+
+		try {
+			CsvTableProps props = new CsvTableProps();
+			props.setName(this.destinationDir + "/comma2");
+			props.setSeparator(',');
+			props.setExportHeaders(true);
+			//props.setEscape('\'');
+			
+			File file = this.writer.write(props, this.table);
+			System.out.println("File => " + file.getAbsolutePath());
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
 
 	@Test
 	public void testWriteSemicolon() {
 
 		try {
 			CsvTableProps props = new CsvTableProps();
-			props.addName(this.destinationDir + "/semicolon");
-			props.addSeparator(";");
-			props.addExportHeaders(true);
+			props.setName(this.destinationDir + "/semicolon");
+			props.setSeparator(';');
+			props.setExportHeaders(true);
+			props.setEscape('\'');
 			
 			File file = this.writer.write(props, this.table);
 			System.out.println("File => " + file.getAbsolutePath());
@@ -53,9 +71,9 @@ public class CsvFileWriterTest {
 
 		try {
 			CsvTableProps props = new CsvTableProps();
-			props.addName(this.destinationDir + "/tab");
-			props.addSeparator("\t");
-			props.addExportHeaders(true);
+			props.setName(this.destinationDir + "/tab");
+			props.setSeparator('\t');
+			props.setExportHeaders(true);
 			
 			File file = this.writer.write(props, this.table);
 			System.out.println("File => " + file.getAbsolutePath());

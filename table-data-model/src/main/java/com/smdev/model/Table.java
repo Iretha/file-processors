@@ -5,6 +5,12 @@ import java.util.List;
 
 import com.smdev.exc.ModelException;
 
+/**
+ * Model of a data, representing the content of a file. This model can be used
+ * in order to export the data in various file formats: csv, txt, pdf, xlsx, ect.
+ * 
+ * @author Ireth
+ */
 public class Table {
 
 	private static final String NEW_LINE = "\n";
@@ -26,7 +32,7 @@ public class Table {
 	public int getHorizontalHeaderRows() {
 		return this.horizontalheaderRows;
 	}
-	
+
 	public void addRow(Object... values) throws ModelException {
 		int rowNum = getRowsCount();
 		if (rowNum != 0 && getColsCount() != values.length) {

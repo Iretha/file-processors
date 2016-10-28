@@ -1,58 +1,54 @@
 package com.smdev.model;
 
-import java.util.Properties;
-
 import com.smdev.util.FileTypes;
 
+/**
+ * Model of a table properties. They are used while reading or writing files.
+ * <br>
+ * <table>
+ * <tr>
+ * <th>Property name</th>
+ * <th>Default value</th>
+ * <th>Possible values</th>
+ * </tr>
+ * <tr>
+ * <td>name</td>
+ * <td>simpleFile</td>
+ * <td>custom</td>
+ * </tr>
+ * <tr>
+ * <td>fileType</td>
+ * <td>FileTypes.CSV</td>
+ * <td>FileTypes.*</td>
+ * </tr>
+ * </table>
+ * 
+ * @author Ireth
+ */
 public abstract class TableProps {
 
-	private enum GeneralPropsKeys implements TablePropKey {
-		/** */
-		NAME, 
-		/** */
-		EXTENSION;
-	}
-
-	private final Properties props = new Properties();
+	private String name = "simpleFile";
+	private FileTypes fileType = FileTypes.CSV;
 
 	protected TableProps(FileTypes fileType) {
 		super();
-		put(GeneralPropsKeys.EXTENSION, fileType.getExtension());
+		this.fileType = fileType;
 	}
 
-	public void addName(String value) {
-		put(GeneralPropsKeys.NAME, value);
-	}
-	
-	public String getName(){
-		return get(GeneralPropsKeys.NAME, "exampleFile");
-	}
-	
-	public String getNameWithExtension(){
-		return getName() + "." + get(GeneralPropsKeys.EXTENSION, "txt");
+	public String getName() {
+		return name;
 	}
 
-	private Properties getProps() {
-		return props;
+	public String getFileName() {
+		return getName() + "." + getFileType().getExtension();
 	}
 
-	protected String get(TablePropKey key, String defaultValue) {
-		return getProps().getProperty(key.name(), defaultValue);
+	public FileTypes getFileType() {
+		return fileType;
 	}
-	
-	protected boolean getBoolean(TablePropKey key, String defaultValue) {
-		return Boolean.parseBoolean(get(key, defaultValue));
-	}
-	protected void put(TablePropKey key, String value) {
-		getProps().setProperty(key.name(), value);
-	}
-	
-	protected void put(TablePropKey key, int value) {
-		put(key, String.valueOf(value));
-	}
-	
-	protected void put(TablePropKey key, boolean value) {
-		put(key, String.valueOf(value));
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

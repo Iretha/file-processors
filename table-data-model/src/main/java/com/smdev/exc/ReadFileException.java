@@ -1,5 +1,10 @@
 package com.smdev.exc;
 
+/**
+ * Exception thrown while reading a source file
+ * 
+ * @author Ireth
+ */
 public class ReadFileException extends Exception {
 
 	/** */
