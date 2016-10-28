@@ -12,9 +12,9 @@ import com.smdev.model.Table;
 
 public class CsvFileWriterTest {
 
-	private CsvFileWriter writer = null;
-	private Table table = null;
 	private String destinationDir = null;
+	private Table table = null;
+	private CsvFileWriter writer = null;
 
 	@Before
 	public void setUp() {
@@ -33,7 +33,7 @@ public class CsvFileWriterTest {
 	}
 	
 	@Test
-	public void testWriteComma() {
+	public void testWriteCsvWithComma() {
 
 		try {
 			CsvTableProps props = new CsvTableProps();
@@ -50,7 +50,7 @@ public class CsvFileWriterTest {
 	}
 
 	@Test
-	public void testWriteSemicolon() {
+	public void testWriteCsvWithSemicolon() {
 
 		try {
 			CsvTableProps props = new CsvTableProps();
@@ -67,7 +67,7 @@ public class CsvFileWriterTest {
 	}
 	
 	@Test
-	public void testWriteTab() {
+	public void testWriteCsvWithTab() {
 
 		try {
 			CsvTableProps props = new CsvTableProps();
@@ -82,4 +82,20 @@ public class CsvFileWriterTest {
 		}
 	}
 
+	@Test
+	public void testWriteTxtWithComma() {
+
+		try {
+			CsvTableProps props = new CsvTableProps();
+			props.setName(this.destinationDir + "/comma");
+			props.setSeparator(',');
+			props.setExportHeaders(true);
+			props.setTxtFileType(true);
+			
+			File file = this.writer.write(props, this.table);
+			System.out.println("File => " + file.getAbsolutePath());
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
 }

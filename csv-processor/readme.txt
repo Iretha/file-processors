@@ -9,9 +9,10 @@ props.setExportHeaders(true); // optional
 props.setName("test"); // optional
 props.setQuote(Character.MIN_VALUE); // optional
 props.setSkipFirstRows(0); // optional
+props.setTxtFileType(true); // optional -> exports a file with *.txt extension
 
 ==================================================
-How to read a csv file:
+How to read a csv or txt file:
 
 CsvFileReader reader = new CsvFileReader();
 File file = new File("example.csv");

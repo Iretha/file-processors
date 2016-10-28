@@ -24,15 +24,6 @@ public class Table {
 		this.horizontalheaderRows = horizontalheaderRows;
 	}
 
-	public Cell[] getRow(int row) {
-		// TODO validation
-		return getContent().get(row);
-	}
-
-	public int getHorizontalHeaderRows() {
-		return this.horizontalheaderRows;
-	}
-
 	public void addRow(Object... values) throws ModelException {
 		int rowNum = getRowsCount();
 		if (rowNum != 0 && getColsCount() != values.length) {
@@ -65,6 +56,15 @@ public class Table {
 
 	public List<Cell[]> getContent() {
 		return this.content;
+	}
+
+	public int getHorizontalHeaderRows() {
+		return this.horizontalheaderRows;
+	}
+
+	public Cell[] getRow(int row) {
+		// TODO validation
+		return getContent().get(row);
 	}
 
 	public int getRowsCount() {

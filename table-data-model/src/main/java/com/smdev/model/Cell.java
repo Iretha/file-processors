@@ -7,11 +7,11 @@ package com.smdev.model;
  */
 public class Cell {
 
-	private Object value;
-	private int row;
 	private int col;
-	private int rowSpan = 1;
 	private int colSpan = 1;
+	private int row;
+	private int rowSpan = 1;
+	private Object value;
 
 	public Cell(int row, int col, Object value) {
 		super();
@@ -24,20 +24,20 @@ public class Cell {
 		return col;
 	}
 
-	public int getRow() {
-		return row;
+	public int getColSpan() {
+		return colSpan;
 	}
 
-	public Object getValue() {
-		return value;
+	public int getRow() {
+		return row;
 	}
 
 	public int getRowSpan() {
 		return rowSpan;
 	}
 
-	public int getColSpan() {
-		return colSpan;
+	public Object getValue() {
+		return value;
 	}
 
 	@Override
