@@ -14,9 +14,10 @@ local.properties
 .loadpath
 .recommenders
 RemoteSystemsTempFiles/
+target/
 
 # Eclipse Core
-#.project
+.project
 
 # External tool builders
 .externalToolBuilders/
