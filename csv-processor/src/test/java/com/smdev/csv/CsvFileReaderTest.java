@@ -80,5 +80,36 @@ public class CsvFileReaderTest {
 			Assert.fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testReadTab() {
+		File file = new File(getClass().getResource("files/tab.csv").getFile());
+		try {
+			CsvTableProps props = new CsvTableProps();
+			props.addSeparator("\t");
+			
+			Table table = this.reader.read(props, file);
+			int firstColIdx = 0;
+			int lastColIdx = 17;
+
+			Assert.assertEquals(1, table.getHorizontalHeaderRows());
+			Assert.assertEquals(36635, table.getRowsCount());
+			Assert.assertEquals(18, table.getColsCount());
+
+			// validate header row
+			Assert.assertEquals("policyID", table.getRow(0)[firstColIdx].getValue());
+			Assert.assertEquals("point_granularity", table.getRow(0)[lastColIdx].getValue());
+
+			// validate first content row
+			Assert.assertEquals("119736", table.getRow(1)[firstColIdx].getValue());
+			Assert.assertEquals("1", table.getRow(1)[lastColIdx].getValue());
+
+			// validate last content row
+			Assert.assertEquals("398149", table.getRow(36634)[firstColIdx].getValue());
+			Assert.assertEquals("1", table.getRow(36634)[lastColIdx].getValue());
+		} catch (ReadFileException | ModelException e) {
+			Assert.fail(e.getMessage());
+		}
+	}
 
 }

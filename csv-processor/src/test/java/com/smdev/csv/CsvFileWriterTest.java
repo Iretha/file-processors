@@ -47,5 +47,21 @@ public class CsvFileWriterTest {
 			Assert.fail(e.getMessage());
 		}
 	}
+	
+	@Test
+	public void testWriteTab() {
+
+		try {
+			CsvTableProps props = new CsvTableProps();
+			props.addName(this.destinationDir + "/tab");
+			props.addSeparator("\t");
+			props.addExportHeaders(true);
+			
+			File file = this.writer.write(props, this.table);
+			System.out.println("File => " + file.getAbsolutePath());
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
 
 }

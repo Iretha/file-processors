@@ -18,7 +18,7 @@
 		<repository>
 			<id>table-data-model.local</id>
 			<name>table-data-model</name>
-			<url>file:${project.basedir}\..\table-data-model\repo</url>
+			<url>https://github.com/Iretha/simple-data-exporter/tree/master/maven-repo</url>
 		</repository>
 	</repositories>
 
