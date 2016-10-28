@@ -24,7 +24,7 @@ public class CsvFileReaderTest {
 		File file = new File(getClass().getResource("files/comma.csv").getFile());
 		try {
 			CsvTableProps props = new CsvTableProps();
-			props.addSeparator(",");
+			props.setSeparator(',');
 			
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;
@@ -55,7 +55,7 @@ public class CsvFileReaderTest {
 		File file = new File(getClass().getResource("files/semicolon.csv").getFile());
 		try {
 			CsvTableProps props = new CsvTableProps();
-			props.addSeparator(";");
+			props.setSeparator(';');
 			
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;
@@ -86,7 +86,7 @@ public class CsvFileReaderTest {
 		File file = new File(getClass().getResource("files/tab.csv").getFile());
 		try {
 			CsvTableProps props = new CsvTableProps();
-			props.addSeparator("\t");
+			props.setSeparator('\t');
 			
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;

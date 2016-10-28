@@ -17,12 +17,14 @@ import com.smdev.processor.Exportable;
 public class CsvFileWriter implements Exportable<CsvTableProps> {
 
 	@Override
-	public File write(CsvTableProps tableProps, Table table) throws WriteFileExaception {
-		String filePath = tableProps.getNameWithExtension();
-		char separator = tableProps.getSeparator();
-		boolean exportHeaders = tableProps.getExportHeaders();
+	public File write(CsvTableProps props, Table table) throws WriteFileExaception {
+		String filePath = props.getFileName();
+		char separator = props.getSeparator();
+		char escape = props.getEscape();
+		char quote = props.getQuote();
+		boolean exportHeaders = props.getExportHeaders();
 
-		try (CSVWriter writer = new CSVWriter(new FileWriter(filePath), separator);) {
+		try (CSVWriter writer = new CSVWriter(new FileWriter(filePath), separator, quote, escape);) {
 			int headerRows = table.getHorizontalHeaderRows();
 			int rows = table.getRowsCount();
 			int cols = table.getColsCount();
@@ -48,12 +50,14 @@ public class CsvFileWriter implements Exportable<CsvTableProps> {
 		return new File(filePath);
 	}
 
-	public File write(CsvTableProps tableProps, ResultSet rs) throws WriteFileExaception {
-		String filePath = tableProps.getNameWithExtension();
-		char separator = tableProps.getSeparator();
-		boolean exportHeaders = tableProps.getExportHeaders();
+	public File write(CsvTableProps props, ResultSet rs) throws WriteFileExaception {
+		String filePath = props.getFileName();
+		char separator = props.getSeparator();
+		char escape = props.getEscape();
+		char quote = props.getQuote();
+		boolean exportHeaders = props.getExportHeaders();
 
-		try (CSVWriter writer = new CSVWriter(new FileWriter(filePath), separator)) {
+		try (CSVWriter writer = new CSVWriter(new FileWriter(filePath), separator, quote, escape)) {
 			writer.writeAll(rs, exportHeaders);
 		} catch (IOException | SQLException e) {
 			throw new WriteFileExaception(e);
