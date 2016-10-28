@@ -27,16 +27,12 @@ import com.smdev.util.FileTypes;
  */
 public abstract class TableProps {
 
+	private FileTypes fileType = null;
 	private String name = "simpleFile";
-	private FileTypes fileType = FileTypes.CSV;
 
 	protected TableProps(FileTypes fileType) {
 		super();
 		this.fileType = fileType;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 	public String getFileName() {
@@ -45,6 +41,14 @@ public abstract class TableProps {
 
 	public FileTypes getFileType() {
 		return fileType;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	protected void setFileType(FileTypes fileType) {
+		this.fileType = fileType;
 	}
 
 	public void setName(String name) {

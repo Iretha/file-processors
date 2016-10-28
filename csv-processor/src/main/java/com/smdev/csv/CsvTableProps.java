@@ -117,5 +117,8 @@ public class CsvTableProps extends TableProps {
 	public void setSkipFirstRows(int skipFirstRows) {
 		this.skipFirstRows = skipFirstRows;
 	}
-
+	
+	public void setTxtFileType(boolean txt) {
+		super.setFileType(txt ? FileTypes.TXT : FileTypes.CSV);
+	}
 }

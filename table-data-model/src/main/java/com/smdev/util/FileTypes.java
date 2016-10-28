@@ -8,7 +8,9 @@ package com.smdev.util;
 public enum FileTypes {
 
 	/** CSV file type */
-	CSV("csv");
+	CSV("csv"),
+	/** TXT file type */
+	TXT("txt");
 
 	private String extension;
 
