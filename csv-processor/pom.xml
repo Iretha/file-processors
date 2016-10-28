@@ -14,6 +14,14 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>table-data-model.local</id>
+			<name>table-data-model</name>
+			<url>file:${project.basedir}\..\table-data-model\repo</url>
+		</repository>
+	</repositories>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -36,6 +44,16 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+			<version>3.8</version>
+		</dependency>
+		<dependency>
+			<groupId>com.smdev</groupId>
+			<artifactId>table-data-model</artifactId>
+			<version>0.0.1</version>
 		</dependency>
 	</dependencies>
 </project>
