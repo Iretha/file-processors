@@ -1,6 +1,6 @@
 package com.smdev.model;
 
-public enum TCellType {
+public enum DataCellType {
 	/** */
 	BIGDECIMAL,
 	/** */

@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.smdev.exc.ApplicationException;
-import com.smdev.model.Table;
+import com.smdev.model.Data;
 
 import org.junit.Assert;
 
@@ -30,7 +30,7 @@ public class ExcelFileReaderTest {
 		props.setLastRow(6);
 		
 		try {
-			Table t = this.reader.read(props, file);
+			Data t = this.reader.read(props, file);
 			Assert.assertTrue(2 == t.getHeaderRows());
 			Assert.assertTrue(1 == t.getHeaderCols());
 			Assert.assertEquals("", t.getRow(0)[0].getValue());
@@ -53,7 +53,7 @@ public class ExcelFileReaderTest {
 		props.setLastCol(2);
 		
 		try {
-			Table t = this.reader.read(props, file);
+			Data t = this.reader.read(props, file);
 			Assert.assertTrue(2 == t.getHeaderRows());
 			Assert.assertTrue(0 == t.getHeaderCols());
 			Assert.assertEquals("(хиляди левове)", t.getRow(0)[0].getValue());

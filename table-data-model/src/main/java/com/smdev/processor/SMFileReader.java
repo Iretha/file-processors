@@ -5,20 +5,20 @@ import java.io.File;
 import com.smdev.exc.ApplicationException;
 import com.smdev.exc.ModelException;
 import com.smdev.exc.ReadFileException;
-import com.smdev.model.Table;
-import com.smdev.model.TableProps;
+import com.smdev.model.Data;
+import com.smdev.model.FileProps;
 
 /**
- * Interface used for importing different file types.
+ * Interface used for reading different file types.
  * 
  * @author Ireth
  * @param <P>
  *            - the type of the concrete table properties
  */
-public interface Importable<P extends TableProps> {
+public interface SMFileReader<P extends FileProps> {
 
 	/**
-	 * Reads the given source file and creates {@link Table}.
+	 * Reads the given source file and creates {@link Data}.
 	 * 
 	 * @param props
 	 *            - properties needed for parsing the content
@@ -28,6 +28,6 @@ public interface Importable<P extends TableProps> {
 	 * @throws ReadFileException
 	 * @throws ModelException
 	 */
-	Table read(P props, File file) throws ApplicationException;
+	Data read(P props, File file) throws ApplicationException;
 
 }

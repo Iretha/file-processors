@@ -12,16 +12,16 @@ import com.smdev.exc.ModelException;
  * 
  * @author Ireth
  */
-public class Table {
+public class Data {
 
 	private static final String NEW_LINE = "\n";
 
-	private final List<TCell[]> content = new ArrayList<>();
+	private final List<DataCell[]> content = new ArrayList<>();
 
 	private int headerRows = 0;
 	private int headerCols = 0;
 
-	public Table(int headerRows, int headerCols) {
+	public Data(int headerRows, int headerCols) {
 		super();
 		this.headerRows = headerRows;
 		this.headerCols = headerCols;
@@ -31,13 +31,13 @@ public class Table {
 		return headerCols;
 	}
 
-	public void addRow(TCell[] cells) throws ModelException {
+	public void addRow(DataCell[] cells) throws ModelException {
 		if(cells != null){
 			getContent().add(cells);	
 		}
 	}
 
-	public void addRow(TCellType type, Object... values) throws ModelException {
+	public void addRow(DataCellType type, Object... values) throws ModelException {
 		if(values == null){
 			return;
 		}
@@ -48,15 +48,15 @@ public class Table {
 		}
 
 		int colNum = 0;
-		TCell[] row = new TCell[values.length];
+		DataCell[] row = new DataCell[values.length];
 		for (Object value : values) {
-			row[colNum] = new TCell(type, value);
+			row[colNum] = new DataCell(type, value);
 			colNum++;
 		}
 		getContent().add(row);
 	}
 
-	public TCell getCell(int row, int col) throws ModelException {
+	public DataCell getCell(int row, int col) throws ModelException {
 		if (row < 0 || row >= getRowsCount()) {
 			throw new ModelException("Invalid row idx!");
 		}
@@ -71,7 +71,7 @@ public class Table {
 		return getContent().isEmpty() ? 0 : getContent().get(0).length;
 	}
 
-	public List<TCell[]> getContent() {
+	public List<DataCell[]> getContent() {
 		return this.content;
 	}
 
@@ -79,7 +79,7 @@ public class Table {
 		return this.headerRows;
 	}
 
-	public TCell[] getRow(int row) {
+	public DataCell[] getRow(int row) {
 		if(row > -1 && row < getContent().size()){
 			return getContent().get(row);
 		}
@@ -93,8 +93,8 @@ public class Table {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		for (TCell[] row : content) {
-			for (TCell c : row) {
+		for (DataCell[] row : content) {
+			for (DataCell c : row) {
 				str.append(c.toString());
 			}
 			str.append(NEW_LINE);

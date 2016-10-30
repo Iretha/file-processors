@@ -1,10 +1,10 @@
 package com.smdev.csv;
 
-import com.smdev.model.TableProps;
+import com.smdev.model.FileProps;
 import com.smdev.util.FileTypes;
 
 /**
- * Specific CSV table properties, extending the {@link TableProps}
+ * Specific CSV table properties, extending the {@link FileProps}
  * 
  * <table>
  * <tr>
@@ -48,7 +48,7 @@ import com.smdev.util.FileTypes;
  * 
  * @author Ireth
  */
-public class CsvProps extends TableProps {
+public class CsvProps extends FileProps {
 
 	/**
 	 * Character used for escaping values: '\'', '\"', etc. Default behavior is

@@ -4,19 +4,19 @@ import java.io.File;
 
 import com.smdev.exc.ApplicationException;
 import com.smdev.exc.WriteFileExaception;
-import com.smdev.model.Table;
-import com.smdev.model.TableProps;
+import com.smdev.model.Data;
+import com.smdev.model.FileProps;
 
 /**
- * Interface used for exporting different file types.
+ * Interface used for writing different file types.
  * 
  * @author Ireth
  * @param <P>
  *            - the type of the concrete table properties
  */
-public interface Exportable<P extends TableProps> {
+public interface SMFileWriter<P extends FileProps> {
 	/**
-	 * Writes the given {@link Table} into file.
+	 * Writes the given {@link Data} into file.
 	 * 
 	 * @param props
 	 *            - properties needed for writing the file
@@ -25,5 +25,5 @@ public interface Exportable<P extends TableProps> {
 	 * @return file - target file
 	 * @throws WriteFileExaception
 	 */
-	File write(P props, Table data) throws ApplicationException;
+	File write(P props, Data data) throws ApplicationException;
 }

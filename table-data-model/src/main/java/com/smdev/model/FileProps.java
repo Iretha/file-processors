@@ -25,12 +25,12 @@ import com.smdev.util.FileTypes;
  * 
  * @author Ireth
  */
-public abstract class TableProps {
+public abstract class FileProps {
 
 	private FileTypes fileType = null;
 	private String name = "simpleFile";
 
-	protected TableProps(FileTypes fileType) {
+	protected FileProps(FileTypes fileType) {
 		super();
 		this.fileType = fileType;
 	}

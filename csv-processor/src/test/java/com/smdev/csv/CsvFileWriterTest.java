@@ -6,12 +6,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.smdev.model.Table;
+import com.smdev.model.Data;
 
 public class CsvFileWriterTest {
 
 	private String destinationDir = null;
-	private Table table = null;
+	private Data table = null;
 	private CsvFileWriter writer = null;
 
 	@Before
