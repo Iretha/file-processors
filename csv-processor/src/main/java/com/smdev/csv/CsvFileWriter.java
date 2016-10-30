@@ -11,9 +11,9 @@ import java.util.List;
 import com.opencsv.CSVWriter;
 import com.smdev.exc.ApplicationException;
 import com.smdev.exc.WriteFileExaception;
+import com.smdev.file.SMFileWriter;
 import com.smdev.model.DataCell;
 import com.smdev.model.Data;
-import com.smdev.processor.SMFileWriter;
 
 /**
  * Implementation of a CSV file writer.

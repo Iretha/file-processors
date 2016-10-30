@@ -10,8 +10,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import com.smdev.exc.ApplicationException;
 import com.smdev.exc.ReadFileException;
+import com.smdev.file.SMFileReader;
 import com.smdev.model.Data;
-import com.smdev.processor.SMFileReader;
 import com.smdev.util.ResourceUtils;
 
 public class ExcelFileReader implements SMFileReader<ExcelProps> {
