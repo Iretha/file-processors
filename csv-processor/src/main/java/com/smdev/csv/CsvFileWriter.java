@@ -9,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.opencsv.CSVWriter;
+import com.smdev.exc.ApplicationException;
 import com.smdev.exc.WriteFileExaception;
-import com.smdev.model.Cell;
+import com.smdev.model.TCell;
 import com.smdev.model.Table;
 import com.smdev.processor.Exportable;
 
@@ -18,9 +19,9 @@ import com.smdev.processor.Exportable;
  * Implementation of a CSV file writer.
  * @author Ireth
  */
-public class CsvFileWriter implements Exportable<CsvTableProps> {
+public class CsvFileWriter implements Exportable<CsvProps> {
 
-	public File write(CsvTableProps props, ResultSet rs) throws WriteFileExaception {
+	public File write(CsvProps props, ResultSet rs) throws ApplicationException {
 		String filePath = props.getFileName();
 		char separator = props.getSeparator();
 		char escape = props.getEscape();
@@ -36,7 +37,7 @@ public class CsvFileWriter implements Exportable<CsvTableProps> {
 	}
 
 	@Override
-	public File write(CsvTableProps props, Table table) throws WriteFileExaception {
+	public File write(CsvProps props, Table table) throws ApplicationException {
 		String filePath = props.getFileName();
 		char separator = props.getSeparator();
 		char escape = props.getEscape();
@@ -44,11 +45,11 @@ public class CsvFileWriter implements Exportable<CsvTableProps> {
 		boolean exportHeaders = props.getExportHeaders();
 
 		try (CSVWriter writer = new CSVWriter(new FileWriter(filePath), separator, quote, escape);) {
-			int headerRows = table.getHorizontalHeaderRows();
+			int headerRows = table.getHeaderRows();
 			int rows = table.getRowsCount();
 			int cols = table.getColsCount();
 
-			Cell[] originalRow = null;
+			TCell[] originalRow = null;
 			String[] stringRow = null;
 			List<String[]> data = new ArrayList<>();
 			for (int row = 0; row < rows; row++) {

@@ -5,7 +5,7 @@ package com.smdev.exc;
  * 
  * @author Ireth
  */
-public class WriteFileExaception extends Exception {
+public class WriteFileExaception extends ApplicationException {
 
 	/** */
 	private static final long serialVersionUID = 7767882366459588593L;

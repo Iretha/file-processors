@@ -3,7 +3,7 @@ Supported file types: txt, csv
 ==================================================
 How to initialize table properties:
 
-CsvTableProps props = new CsvTableProps();
+CsvProps props = new CsvProps();
 props.setSeparator(','); // required
 
 props.setEscape(Character.MIN_VALUE); // optional
@@ -28,11 +28,11 @@ table.addRow("Col 1", "Col 2", "Col 3");
 table.addRow(11, 22, 33);
 
 CsvFileWriter writer = new CsvFileWriter();
-File file = writer.write(CsvTableProps props, Table table)
+File file = writer.write(CsvProps props, Table table)
 
 ==================================================
 How to write a csv file from java.sql.ResultSet:
 
 CsvFileWriter writer = new CsvFileWriter();
-File file = writer.write(CsvTableProps props, ResultSet rs);
+File file = writer.write(CsvProps props, ResultSet rs);
 

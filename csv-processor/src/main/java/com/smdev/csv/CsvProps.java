@@ -48,7 +48,7 @@ import com.smdev.util.FileTypes;
  * 
  * @author Ireth
  */
-public class CsvTableProps extends TableProps {
+public class CsvProps extends TableProps {
 
 	/**
 	 * Character used for escaping values: '\'', '\"', etc. Default behavior is
@@ -74,7 +74,7 @@ public class CsvTableProps extends TableProps {
 	private int skipFirstRows = 0;
 
 	/** Construct */
-	protected CsvTableProps() {
+	protected CsvProps() {
 		super(FileTypes.CSV);
 	}
 

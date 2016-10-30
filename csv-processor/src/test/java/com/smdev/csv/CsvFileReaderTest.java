@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.smdev.exc.ModelException;
-import com.smdev.exc.ReadFileException;
 import com.smdev.model.Table;
 
 public class CsvFileReaderTest {
@@ -25,15 +23,15 @@ public class CsvFileReaderTest {
 		try {
 			int rowsToSkip = 10;
 
-			CsvTableProps props = new CsvTableProps();
+			CsvProps props = new CsvProps();
 			props.setSeparator(','); // optional
 			props.setSkipFirstRows(rowsToSkip); // optional
 
 			Table table = this.reader.read(props, file);
-			Assert.assertEquals(1, table.getHorizontalHeaderRows());
+			Assert.assertEquals(1, table.getHeaderRows());
 			Assert.assertEquals(36635 - rowsToSkip, table.getRowsCount());
 			Assert.assertEquals(18, table.getColsCount());
-		} catch (ReadFileException | ModelException e) {
+		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
 	}
@@ -42,14 +40,14 @@ public class CsvFileReaderTest {
 	public void testReadCsvWithComma() {
 		File file = new File(getClass().getResource("files/comma.csv").getFile());
 		try {
-			CsvTableProps props = new CsvTableProps();
+			CsvProps props = new CsvProps();
 			props.setSeparator(',');
 
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
 
-			Assert.assertEquals(1, table.getHorizontalHeaderRows());
+			Assert.assertEquals(1, table.getHeaderRows());
 			Assert.assertEquals(36635, table.getRowsCount());
 			Assert.assertEquals(18, table.getColsCount());
 
@@ -64,7 +62,7 @@ public class CsvFileReaderTest {
 			// validate last content row
 			Assert.assertEquals("398149", table.getRow(36634)[firstColIdx].getValue());
 			Assert.assertEquals("1", table.getRow(36634)[lastColIdx].getValue());
-		} catch (ReadFileException | ModelException e) {
+		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
 	}
@@ -73,14 +71,14 @@ public class CsvFileReaderTest {
 	public void testReadCsvWithSemicolon() {
 		File file = new File(getClass().getResource("files/semicolon.csv").getFile());
 		try {
-			CsvTableProps props = new CsvTableProps();
+			CsvProps props = new CsvProps();
 			props.setSeparator(';');
 
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
 
-			Assert.assertEquals(1, table.getHorizontalHeaderRows());
+			Assert.assertEquals(1, table.getHeaderRows());
 			Assert.assertEquals(36635, table.getRowsCount());
 			Assert.assertEquals(18, table.getColsCount());
 
@@ -95,7 +93,7 @@ public class CsvFileReaderTest {
 			// validate last content row
 			Assert.assertEquals("398149", table.getRow(36634)[firstColIdx].getValue());
 			Assert.assertEquals("1", table.getRow(36634)[lastColIdx].getValue());
-		} catch (ReadFileException | ModelException e) {
+		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
 	}
@@ -104,14 +102,14 @@ public class CsvFileReaderTest {
 	public void testReadCsvWithTab() {
 		File file = new File(getClass().getResource("files/tab.csv").getFile());
 		try {
-			CsvTableProps props = new CsvTableProps();
+			CsvProps props = new CsvProps();
 			props.setSeparator('\t');
 
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
 
-			Assert.assertEquals(1, table.getHorizontalHeaderRows());
+			Assert.assertEquals(1, table.getHeaderRows());
 			Assert.assertEquals(36635, table.getRowsCount());
 			Assert.assertEquals(18, table.getColsCount());
 
@@ -126,7 +124,7 @@ public class CsvFileReaderTest {
 			// validate last content row
 			Assert.assertEquals("398149", table.getRow(36634)[firstColIdx].getValue());
 			Assert.assertEquals("1", table.getRow(36634)[lastColIdx].getValue());
-		} catch (ReadFileException | ModelException e) {
+		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
 	}
@@ -135,14 +133,14 @@ public class CsvFileReaderTest {
 	public void testReadTxtWithComma() {
 		File file = new File(getClass().getResource("files/comma.csv").getFile());
 		try {
-			CsvTableProps props = new CsvTableProps();
+			CsvProps props = new CsvProps();
 			props.setSeparator(',');
 
 			Table table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
 
-			Assert.assertEquals(1, table.getHorizontalHeaderRows());
+			Assert.assertEquals(1, table.getHeaderRows());
 			Assert.assertEquals(36635, table.getRowsCount());
 			Assert.assertEquals(18, table.getColsCount());
 
@@ -157,7 +155,7 @@ public class CsvFileReaderTest {
 			// validate last content row
 			Assert.assertEquals("398149", table.getRow(36634)[firstColIdx].getValue());
 			Assert.assertEquals("1", table.getRow(36634)[lastColIdx].getValue());
-		} catch (ReadFileException | ModelException e) {
+		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
 	}

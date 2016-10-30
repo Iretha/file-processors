@@ -5,7 +5,7 @@ package com.smdev.exc;
  * 
  * @author Ireth
  */
-public class ReadFileException extends Exception {
+public class ReadFileException extends ApplicationException {
 
 	/** */
 	private static final long serialVersionUID = 2374605431666532027L;
