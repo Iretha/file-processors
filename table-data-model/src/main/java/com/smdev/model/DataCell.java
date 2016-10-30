@@ -5,20 +5,20 @@ package com.smdev.model;
  * 
  * @author Ireth
  */
-public class TCell {
+public class DataCell {
 
 	private static final String SEPARATOR = "#";
 	private static final String EMPTY = "";
-	private TCellType type = null;
+	private DataCellType type = null;
 	private Object value;
 
-	public TCell(TCellType type, Object value) {
+	public DataCell(DataCellType type, Object value) {
 		super();
 		this.type = type;
 		this.value = value;
 	}
 
-	public TCellType getType() {
+	public DataCellType getType() {
 		return type;
 	}
 

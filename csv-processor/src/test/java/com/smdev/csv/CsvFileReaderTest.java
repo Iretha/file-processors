@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.smdev.model.Table;
+import com.smdev.model.Data;
 
 public class CsvFileReaderTest {
 
@@ -27,7 +27,7 @@ public class CsvFileReaderTest {
 			props.setSeparator(','); // optional
 			props.setSkipFirstRows(rowsToSkip); // optional
 
-			Table table = this.reader.read(props, file);
+			Data table = this.reader.read(props, file);
 			Assert.assertEquals(1, table.getHeaderRows());
 			Assert.assertEquals(36635 - rowsToSkip, table.getRowsCount());
 			Assert.assertEquals(18, table.getColsCount());
@@ -43,7 +43,7 @@ public class CsvFileReaderTest {
 			CsvProps props = new CsvProps();
 			props.setSeparator(',');
 
-			Table table = this.reader.read(props, file);
+			Data table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
 
@@ -74,7 +74,7 @@ public class CsvFileReaderTest {
 			CsvProps props = new CsvProps();
 			props.setSeparator(';');
 
-			Table table = this.reader.read(props, file);
+			Data table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
 
@@ -105,7 +105,7 @@ public class CsvFileReaderTest {
 			CsvProps props = new CsvProps();
 			props.setSeparator('\t');
 
-			Table table = this.reader.read(props, file);
+			Data table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
 
@@ -136,7 +136,7 @@ public class CsvFileReaderTest {
 			CsvProps props = new CsvProps();
 			props.setSeparator(',');
 
-			Table table = this.reader.read(props, file);
+			Data table = this.reader.read(props, file);
 			int firstColIdx = 0;
 			int lastColIdx = 17;
 

@@ -7,28 +7,28 @@ import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import com.smdev.exc.ModelException;
-import com.smdev.model.TCell;
-import com.smdev.model.TCellType;
-import com.smdev.model.Table;
+import com.smdev.model.DataCell;
+import com.smdev.model.DataCellType;
+import com.smdev.model.Data;
 
 public class ExcelSheetParser {
 
 	private static final String EMPTY_STR = "";
 	private ExcelProps props = null;
-	private Table table = null;
+	private Data table = null;
 	private Sheet sheet = null;
 
 	public ExcelSheetParser(ExcelProps props, Sheet sheet) {
 		super();
 		this.props = props;
 		this.sheet = sheet;
-		this.table = new Table(props.getHeaderRows(), props.getHeaderCols());
 	}
 
-	public Table parse() throws ModelException {
+	public Data parse() throws ModelException {
+		this.table = new Data(props.getHeaderRows(), props.getHeaderCols());
 		int firstRow = props.getFirstRow(sheet.getFirstRowNum());
 		int lastRow = props.getLastRow(sheet.getLastRowNum());
-		TCell[] tableRow = null;
+		DataCell[] tableRow = null;
 		for (int rowIdx = firstRow; rowIdx <= lastRow; rowIdx++) {
 			tableRow = parseRow(sheet.getRow(rowIdx));
 			this.table.addRow(tableRow);
@@ -36,14 +36,14 @@ public class ExcelSheetParser {
 		return this.table;
 	}
 
-	private TCell[] parseRow(Row row) {
+	private DataCell[] parseRow(Row row) {
 		if(row == null){
 			return null;
 		}
 		int firstCol = props.getFirstCol(row.getFirstCellNum());
 		int lastCol = props.getLastCol(row.getLastCellNum());
 
-		TCell[] tableRow = new TCell[lastCol - firstCol];
+		DataCell[] tableRow = new DataCell[lastCol - firstCol];
 		int colCounter = 0;
 		for (int colIdx = firstCol; colIdx < lastCol; colIdx++) {
 			tableRow[colCounter++] = parseCell(row.getCell(colIdx));
@@ -61,28 +61,28 @@ public class ExcelSheetParser {
 	 * @return table cell
 	 */
 	@SuppressWarnings("deprecation")
-	private TCell parseCell(Cell cell) {
+	private DataCell parseCell(Cell cell) {
 		// TODO refactor
 		Object value = null;
-		TCellType cellType = TCellType.STRING;
+		DataCellType cellType = DataCellType.STRING;
 		if (cell != null) {
 			int type = cell.getCellType();
 			if (type == CellType.BLANK.getCode()) {
 				value = EMPTY_STR;
 			} else if (type == CellType.BOOLEAN.getCode()) {
 				value = Boolean.valueOf(cell.getBooleanCellValue());
-				cellType = TCellType.BOOLEAN;
+				cellType = DataCellType.BOOLEAN;
 			} else if (type == CellType.NUMERIC.getCode() && DateUtil.isCellDateFormatted(cell)) {
 				value = cell.getDateCellValue();
-				cellType = TCellType.DATE;
+				cellType = DataCellType.DATE;
 			} else if (type == CellType.NUMERIC.getCode() && !DateUtil.isCellDateFormatted(cell)) {
 				BigDecimal bd = new BigDecimal(cell.getNumericCellValue());
 				if (bd.scale() != 0) {
 					value = bd;
-					cellType = TCellType.BIGDECIMAL;
+					cellType = DataCellType.BIGDECIMAL;
 				} else {
 					value = bd.toBigInteger();
-					cellType = TCellType.BIGINTEGER;
+					cellType = DataCellType.BIGINTEGER;
 				}
 			} else if (type == CellType.STRING.getCode()) {
 				value = cell.getStringCellValue();
@@ -92,7 +92,7 @@ public class ExcelSheetParser {
 				// TODO test
 			}
 		}
-		TCell tCell = new TCell(cellType, value);
+		DataCell tCell = new DataCell(cellType, value);
 		return tCell;
 	}
 }

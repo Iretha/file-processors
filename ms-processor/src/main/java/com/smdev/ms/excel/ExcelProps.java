@@ -1,9 +1,9 @@
 package com.smdev.ms.excel;
 
-import com.smdev.model.TableProps;
+import com.smdev.model.FileProps;
 import com.smdev.util.FileTypes;
 
-public class ExcelProps extends TableProps {
+public class ExcelProps extends FileProps {
 
 	/**
 	 * Index of the first column to be processed. Leave null to start from the

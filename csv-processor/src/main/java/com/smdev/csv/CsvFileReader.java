@@ -8,9 +8,9 @@ import java.util.List;
 import com.opencsv.CSVReader;
 import com.smdev.exc.ApplicationException;
 import com.smdev.exc.ReadFileException;
-import com.smdev.model.TCellType;
-import com.smdev.model.Table;
-import com.smdev.processor.Importable;
+import com.smdev.model.DataCellType;
+import com.smdev.model.Data;
+import com.smdev.processor.SMFileReader;
 
 /**
  * Implementation of a CSV file reader.
@@ -19,18 +19,18 @@ import com.smdev.processor.Importable;
  * 
  * @author Ireth
  */
-public class CsvFileReader implements Importable<CsvProps> {
+public class CsvFileReader implements SMFileReader<CsvProps> {
 
 	@Override
-	public Table read(CsvProps props, File file) throws ApplicationException {
+	public Data read(CsvProps props, File file) throws ApplicationException {
 		char sep = props.getSeparator();
 		char escape = props.getEscape();
 		int skipRows = props.getSkipFirstRows();
-		Table table = new Table(1, 0);
+		Data table = new Data(1, 0);
 		try (CSVReader reader = new CSVReader(new FileReader(file), sep, escape, skipRows)) {
 			List<String[]> rows = reader.readAll();
 			for (Object[] row : rows) {
-				table.addRow(TCellType.STRING, row);
+				table.addRow(DataCellType.STRING, row);
 			}
 		} catch (IOException e) {
 			throw new ReadFileException(e);

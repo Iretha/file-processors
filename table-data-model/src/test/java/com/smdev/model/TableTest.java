@@ -10,22 +10,22 @@ import com.smdev.exc.ModelException;
 
 public class TableTest {
 
-	private Table table;
+	private Data table;
 
 	@Rule
 	public final ExpectedException thrown = ExpectedException.none();
 
 	@Before
 	public void setUp() {
-		this.table = new Table(0, 0);
+		this.table = new Data(0, 0);
 	}
 
 	@Test
 	public void testAddRow() {
 		try {
-			this.table.addRow(TCellType.BIGINTEGER, 1, 2, 3);
-			this.table.addRow(TCellType.BIGINTEGER, 11, 22, 33);
-			this.table.addRow(TCellType.BIGINTEGER, null, null, null);
+			this.table.addRow(DataCellType.BIGINTEGER, 1, 2, 3);
+			this.table.addRow(DataCellType.BIGINTEGER, 11, 22, 33);
+			this.table.addRow(DataCellType.BIGINTEGER, null, null, null);
 
 			assertEquals(3, this.table.getRowsCount());
 			assertEquals(1, this.table.getCell(0, 0).getValue());
@@ -38,8 +38,8 @@ public class TableTest {
 	@Test
 	public void testAddRowException() {
 		try {
-			this.table.addRow(TCellType.BIGINTEGER, 1, 2, 3);
-			this.table.addRow(TCellType.BIGINTEGER, 1, 2);
+			this.table.addRow(DataCellType.BIGINTEGER, 1, 2, 3);
+			this.table.addRow(DataCellType.BIGINTEGER, 1, 2);
 			fail("Expected exception not occured");
 		} catch (ModelException e) {
 			//
@@ -49,9 +49,9 @@ public class TableTest {
 	@Test
 	public void testToString() {
 		try {
-			this.table.addRow(TCellType.BIGINTEGER, 1, 2, 3);
-			this.table.addRow(TCellType.BIGINTEGER, 11, 22, 33);
-			this.table.addRow(TCellType.BIGINTEGER, null, null, null);
+			this.table.addRow(DataCellType.BIGINTEGER, 1, 2, 3);
+			this.table.addRow(DataCellType.BIGINTEGER, 11, 22, 33);
+			this.table.addRow(DataCellType.BIGINTEGER, null, null, null);
 
 			System.out.println(this.table.toString());
 		} catch (ModelException e) {

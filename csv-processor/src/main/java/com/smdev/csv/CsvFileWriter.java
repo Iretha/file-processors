@@ -11,15 +11,15 @@ import java.util.List;
 import com.opencsv.CSVWriter;
 import com.smdev.exc.ApplicationException;
 import com.smdev.exc.WriteFileExaception;
-import com.smdev.model.TCell;
-import com.smdev.model.Table;
-import com.smdev.processor.Exportable;
+import com.smdev.model.DataCell;
+import com.smdev.model.Data;
+import com.smdev.processor.SMFileWriter;
 
 /**
  * Implementation of a CSV file writer.
  * @author Ireth
  */
-public class CsvFileWriter implements Exportable<CsvProps> {
+public class CsvFileWriter implements SMFileWriter<CsvProps> {
 
 	public File write(CsvProps props, ResultSet rs) throws ApplicationException {
 		String filePath = props.getFileName();
@@ -37,7 +37,7 @@ public class CsvFileWriter implements Exportable<CsvProps> {
 	}
 
 	@Override
-	public File write(CsvProps props, Table table) throws ApplicationException {
+	public File write(CsvProps props, Data table) throws ApplicationException {
 		String filePath = props.getFileName();
 		char separator = props.getSeparator();
 		char escape = props.getEscape();
@@ -49,9 +49,9 @@ public class CsvFileWriter implements Exportable<CsvProps> {
 			int rows = table.getRowsCount();
 			int cols = table.getColsCount();
 
-			TCell[] originalRow = null;
+			DataCell[] originalRow = null;
 			String[] stringRow = null;
-			List<String[]> data = new ArrayList<>();
+			List<String[]> content = new ArrayList<>();
 			for (int row = 0; row < rows; row++) {
 				if (!exportHeaders && row < headerRows) {
 					continue; // skipping header rows
@@ -61,9 +61,9 @@ public class CsvFileWriter implements Exportable<CsvProps> {
 				for (int col = 0; col < cols; col++) {
 					stringRow[col] = String.valueOf(originalRow[col].getValue());
 				}
-				data.add(stringRow);
+				content.add(stringRow);
 			}
-			writer.writeAll(data);
+			writer.writeAll(content);
 		} catch (IOException e) {
 			throw new WriteFileExaception(e);
 		}
