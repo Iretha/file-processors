@@ -12,14 +12,18 @@ public class CsvFileReaderTest {
 
 	private CsvFileReader reader = null;
 
+	private File resolveFile(String name){
+		return new File(getClass().getClassLoader().getResource(name).getFile());
+	}
+
 	@Before
 	public void setUp() {
 		this.reader = new CsvFileReader();
 	}
-	
+
 	@Test
 	public void testReadCsvSkipFirstRows() {
-		File file = new File(getClass().getResource("files/comma.csv").getFile());
+		File file = resolveFile("comma.csv");
 		try {
 			int rowsToSkip = 10;
 
@@ -38,7 +42,7 @@ public class CsvFileReaderTest {
 
 	@Test
 	public void testReadCsvWithComma() {
-		File file = new File(getClass().getResource("files/comma.csv").getFile());
+		File file = resolveFile("comma.csv");
 		try {
 			CsvProps props = new CsvProps();
 			props.setSeparator(',');
@@ -66,10 +70,10 @@ public class CsvFileReaderTest {
 			Assert.fail(e.getMessage());
 		}
 	}
-
+	
 	@Test
 	public void testReadCsvWithSemicolon() {
-		File file = new File(getClass().getResource("files/semicolon.csv").getFile());
+		File file = resolveFile("semicolon.csv");
 		try {
 			CsvProps props = new CsvProps();
 			props.setSeparator(';');
@@ -100,7 +104,7 @@ public class CsvFileReaderTest {
 
 	@Test
 	public void testReadCsvWithTab() {
-		File file = new File(getClass().getResource("files/tab.csv").getFile());
+		File file = resolveFile("tab.csv");
 		try {
 			CsvProps props = new CsvProps();
 			props.setSeparator('\t');
@@ -131,7 +135,7 @@ public class CsvFileReaderTest {
 
 	@Test
 	public void testReadTxtWithComma() {
-		File file = new File(getClass().getResource("files/comma.csv").getFile());
+		File file = resolveFile("comma.txt");
 		try {
 			CsvProps props = new CsvProps();
 			props.setSeparator(',');

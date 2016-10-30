@@ -13,11 +13,15 @@ public class CsvFileWriterTest {
 	private String destinationDir = null;
 	private Data table = null;
 	private CsvFileWriter writer = null;
+	
+	private File resolveFile(String name){
+		return new File(getClass().getClassLoader().getResource(name).getFile());
+	}
 
 	@Before
 	public void setUp() {
 		this.writer = new CsvFileWriter();
-		File file = new File(getClass().getResource("files/comma.csv").getFile());
+		File file = resolveFile("comma.csv");
 		CsvProps props = new CsvProps();
 		props.setSeparator(',');
 		try {
@@ -25,9 +29,7 @@ public class CsvFileWriterTest {
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
-		
-		File dir = new File(getClass().getResource("files").getFile());
-		this.destinationDir = dir.getAbsolutePath();
+		this.destinationDir = file.getParentFile().getAbsolutePath();
 	}
 	
 	@Test

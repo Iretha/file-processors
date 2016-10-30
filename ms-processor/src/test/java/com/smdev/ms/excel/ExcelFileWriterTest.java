@@ -13,11 +13,15 @@ public class ExcelFileWriterTest {
 	private String destinationDir = null;
 	private Data table = null;
 	private ExcelFileWriter writer = null;
+	
+	private File resolveFile(String name){
+		return new File(getClass().getClassLoader().getResource(name).getFile());
+	}
 
 	@Before
 	public void setUp() {
 		this.writer = new ExcelFileWriter();
-		File file = new File(getClass().getResource("files/short1.xlsx").getFile());
+		File file = resolveFile("short1.xlsx");
 		ExcelProps props = new ExcelProps();
 		props.setHeaderRows(2);
 		props.setHeaderCols(1);
@@ -29,9 +33,7 @@ public class ExcelFileWriterTest {
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
-		
-		File dir = new File(getClass().getResource("files").getFile());
-		this.destinationDir = dir.getAbsolutePath();
+		this.destinationDir = file.getParentFile().getAbsolutePath();
 	}
 	
 
