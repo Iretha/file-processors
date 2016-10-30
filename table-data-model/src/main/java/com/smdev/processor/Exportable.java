@@ -2,6 +2,7 @@ package com.smdev.processor;
 
 import java.io.File;
 
+import com.smdev.exc.ApplicationException;
 import com.smdev.exc.WriteFileExaception;
 import com.smdev.model.Table;
 import com.smdev.model.TableProps;
@@ -24,5 +25,5 @@ public interface Exportable<P extends TableProps> {
 	 * @return file - target file
 	 * @throws WriteFileExaception
 	 */
-	File write(P props, Table data) throws WriteFileExaception;
+	File write(P props, Table data) throws ApplicationException;
 }

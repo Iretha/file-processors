@@ -6,8 +6,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.smdev.exc.ModelException;
-import com.smdev.exc.ReadFileException;
 import com.smdev.model.Table;
 
 public class CsvFileWriterTest {
@@ -20,11 +18,11 @@ public class CsvFileWriterTest {
 	public void setUp() {
 		this.writer = new CsvFileWriter();
 		File file = new File(getClass().getResource("files/comma.csv").getFile());
-		CsvTableProps props = new CsvTableProps();
+		CsvProps props = new CsvProps();
 		props.setSeparator(',');
 		try {
 			this.table = new CsvFileReader().read(props, file);
-		} catch (ReadFileException | ModelException e) {
+		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
 		
@@ -36,7 +34,7 @@ public class CsvFileWriterTest {
 	public void testWriteCsvWithComma() {
 
 		try {
-			CsvTableProps props = new CsvTableProps();
+			CsvProps props = new CsvProps();
 			props.setName(this.destinationDir + "/comma2");
 			props.setSeparator(',');
 			props.setExportHeaders(true);
@@ -53,7 +51,7 @@ public class CsvFileWriterTest {
 	public void testWriteCsvWithSemicolon() {
 
 		try {
-			CsvTableProps props = new CsvTableProps();
+			CsvProps props = new CsvProps();
 			props.setName(this.destinationDir + "/semicolon");
 			props.setSeparator(';');
 			props.setExportHeaders(true);
@@ -70,7 +68,7 @@ public class CsvFileWriterTest {
 	public void testWriteCsvWithTab() {
 
 		try {
-			CsvTableProps props = new CsvTableProps();
+			CsvProps props = new CsvProps();
 			props.setName(this.destinationDir + "/tab");
 			props.setSeparator('\t');
 			props.setExportHeaders(true);
@@ -86,7 +84,7 @@ public class CsvFileWriterTest {
 	public void testWriteTxtWithComma() {
 
 		try {
-			CsvTableProps props = new CsvTableProps();
+			CsvProps props = new CsvProps();
 			props.setName(this.destinationDir + "/comma");
 			props.setSeparator(',');
 			props.setExportHeaders(true);

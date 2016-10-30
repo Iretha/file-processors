@@ -5,7 +5,7 @@ package com.smdev.exc;
  * 
  * @author Ireth
  */
-public class ModelException extends Exception {
+public class ModelException extends ApplicationException {
 
 	/** */
 	private static final long serialVersionUID = -4782860044719115331L;

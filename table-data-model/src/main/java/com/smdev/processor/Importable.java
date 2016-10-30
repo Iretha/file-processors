@@ -2,6 +2,7 @@ package com.smdev.processor;
 
 import java.io.File;
 
+import com.smdev.exc.ApplicationException;
 import com.smdev.exc.ModelException;
 import com.smdev.exc.ReadFileException;
 import com.smdev.model.Table;
@@ -27,6 +28,6 @@ public interface Importable<P extends TableProps> {
 	 * @throws ReadFileException
 	 * @throws ModelException
 	 */
-	Table read(P props, File file) throws ReadFileException, ModelException;
+	Table read(P props, File file) throws ApplicationException;
 
 }

@@ -7,7 +7,8 @@ import com.smdev.exc.ModelException;
 
 /**
  * Model of a data, representing the content of a file. This model can be used
- * in order to export the data in various file formats: csv, txt, pdf, xlsx, ect.
+ * in order to export the data in various file formats: csv, txt, pdf, xlsx,
+ * ect.
  * 
  * @author Ireth
  */
@@ -15,31 +16,47 @@ public class Table {
 
 	private static final String NEW_LINE = "\n";
 
-	private final List<Cell[]> content = new ArrayList<>();
+	private final List<TCell[]> content = new ArrayList<>();
 
-	private int horizontalheaderRows = 0;
+	private int headerRows = 0;
+	private int headerCols = 0;
 
-	public Table(int horizontalheaderRows) {
+	public Table(int headerRows, int headerCols) {
 		super();
-		this.horizontalheaderRows = horizontalheaderRows;
+		this.headerRows = headerRows;
+		this.headerCols = headerCols;
 	}
 
-	public void addRow(Object... values) throws ModelException {
+	public int getHeaderCols() {
+		return headerCols;
+	}
+
+	public void addRow(TCell[] cells) throws ModelException {
+		if(cells != null){
+			getContent().add(cells);	
+		}
+	}
+
+	public void addRow(TCellType type, Object... values) throws ModelException {
+		if(values == null){
+			return;
+		}
+		
 		int rowNum = getRowsCount();
 		if (rowNum != 0 && getColsCount() != values.length) {
 			throw new ModelException("Invalid Row!");
 		}
 
 		int colNum = 0;
-		Cell[] row = new Cell[values.length];
+		TCell[] row = new TCell[values.length];
 		for (Object value : values) {
-			row[colNum] = new Cell(rowNum, colNum, value);
+			row[colNum] = new TCell(type, value);
 			colNum++;
 		}
 		getContent().add(row);
 	}
 
-	public Cell getCell(int row, int col) throws ModelException {
+	public TCell getCell(int row, int col) throws ModelException {
 		if (row < 0 || row >= getRowsCount()) {
 			throw new ModelException("Invalid row idx!");
 		}
@@ -54,17 +71,19 @@ public class Table {
 		return getContent().isEmpty() ? 0 : getContent().get(0).length;
 	}
 
-	public List<Cell[]> getContent() {
+	public List<TCell[]> getContent() {
 		return this.content;
 	}
 
-	public int getHorizontalHeaderRows() {
-		return this.horizontalheaderRows;
+	public int getHeaderRows() {
+		return this.headerRows;
 	}
 
-	public Cell[] getRow(int row) {
-		// TODO validation
-		return getContent().get(row);
+	public TCell[] getRow(int row) {
+		if(row > -1 && row < getContent().size()){
+			return getContent().get(row);
+		}
+		return null;
 	}
 
 	public int getRowsCount() {
@@ -74,9 +93,8 @@ public class Table {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-
-		for (Cell[] row : content) {
-			for (Cell c : row) {
+		for (TCell[] row : content) {
+			for (TCell c : row) {
 				str.append(c.toString());
 			}
 			str.append(NEW_LINE);
