@@ -10,8 +10,11 @@ public class ReadFileException extends ApplicationException {
 	/** */
 	private static final long serialVersionUID = 2374605431666532027L;
 
-	public ReadFileException(Throwable arg0) {
-		super(arg0);
+	/**
+	 * @param throwable
+	 */
+	public ReadFileException(Throwable throwable) {
+		super(throwable);
 	}
 
 }

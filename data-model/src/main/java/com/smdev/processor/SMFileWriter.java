@@ -21,7 +21,7 @@ public interface SMFileWriter<P extends FileProps> {
 	 * @param props
 	 *            - properties needed for writing the file
 	 * @param data
-	 *            - data to write
+	 *            - data to be written
 	 * @return file - target file
 	 * @throws WriteFileExaception
 	 */
