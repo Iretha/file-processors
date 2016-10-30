@@ -15,6 +15,10 @@ public class ExcelFileReaderTest {
 	
 	private ExcelFileReader reader = null;
 	
+	private File resolveFile(String name){
+		return new File(getClass().getClassLoader().getResource(name).getFile());
+	}
+	
 	@Before
 	public void setUp(){
 		this.reader = new ExcelFileReader();
@@ -22,7 +26,7 @@ public class ExcelFileReaderTest {
 
 	@Test
 	public void testReadShort1Xlsx1(){
-		File file = new File(getClass().getResource("files/short1.xlsx").getFile());
+		File file = resolveFile("short1.xlsx");
 		ExcelProps props = new ExcelProps();
 		props.setHeaderRows(2);
 		props.setHeaderCols(1);
@@ -44,7 +48,7 @@ public class ExcelFileReaderTest {
 	
 	@Test
 	public void testReadShort1Xlsx2(){
-		File file = new File(getClass().getResource("files/short1.xlsx").getFile());
+		File file = resolveFile("short1.xlsx");
 		ExcelProps props = new ExcelProps();
 		props.setHeaderRows(2);
 		props.setFirstRow(1);

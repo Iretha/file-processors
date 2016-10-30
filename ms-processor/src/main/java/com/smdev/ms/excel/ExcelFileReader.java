@@ -16,6 +16,16 @@ import com.smdev.util.ResourceUtils;
 
 public class ExcelFileReader implements SMFileReader<ExcelProps> {
 
+	private static Workbook getWorkbook(boolean xlsx, InputStream inputStream) throws IOException {
+		Workbook workbook = null;
+		if (xlsx) {
+			workbook = new XSSFWorkbook(inputStream);
+		} else {
+			workbook = new HSSFWorkbook(inputStream);
+		}
+		return workbook;
+	}
+
 	@Override
 	public Data read(ExcelProps props, File file) throws ApplicationException {
 		Data data = null;
@@ -34,16 +44,6 @@ public class ExcelFileReader implements SMFileReader<ExcelProps> {
 			ResourceUtils.silentClose(inputStream);
 		}
 		return data;
-	}
-
-	private static Workbook getWorkbook(boolean xlsx, InputStream inputStream) throws IOException {
-		Workbook workbook = null;
-		if (xlsx) {
-			workbook = new XSSFWorkbook(inputStream);
-		} else {
-			workbook = new HSSFWorkbook(inputStream);
-		}
-		return workbook;
 	}
 
 }

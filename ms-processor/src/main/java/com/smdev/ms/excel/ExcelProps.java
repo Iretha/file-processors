@@ -81,6 +81,10 @@ public class ExcelProps extends FileProps {
 	}
 
 
+	public boolean isXlsxFormat() {
+		return getFileType().equals(FileTypes.XLSX);
+	}
+
 	public void setFirstCol(Integer firstCol) {
 		this.firstCol = firstCol;
 	}
@@ -114,13 +118,9 @@ public class ExcelProps extends FileProps {
 	public void setLastRow(Integer lastRow) {
 		this.lastRow = lastRow;
 	}
-
+	
 	public void setXlsxFormat(boolean xlsxFormat) {
 		setFileType(xlsxFormat ? FileTypes.XLSX : FileTypes.XLS);
-	}
-	
-	public boolean isXlsxFormat() {
-		return getFileType().equals(FileTypes.XLSX);
 	}
 
 }

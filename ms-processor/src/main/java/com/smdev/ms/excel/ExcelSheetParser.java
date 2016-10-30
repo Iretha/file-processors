@@ -15,8 +15,8 @@ public class ExcelSheetParser {
 
 	private static final String EMPTY_STR = "";
 	private ExcelProps props = null;
-	private Data table = null;
 	private Sheet sheet = null;
+	private Data table = null;
 
 	public ExcelSheetParser(ExcelProps props, Sheet sheet) {
 		super();
@@ -34,21 +34,6 @@ public class ExcelSheetParser {
 			this.table.addRow(tableRow);
 		}
 		return this.table;
-	}
-
-	private DataCell[] parseRow(Row row) {
-		if(row == null){
-			return null;
-		}
-		int firstCol = props.getFirstCol(row.getFirstCellNum());
-		int lastCol = props.getLastCol(row.getLastCellNum());
-
-		DataCell[] tableRow = new DataCell[lastCol - firstCol];
-		int colCounter = 0;
-		for (int colIdx = firstCol; colIdx < lastCol; colIdx++) {
-			tableRow[colCounter++] = parseCell(row.getCell(colIdx));
-		}
-		return tableRow;
 	}
 
 	/**
@@ -94,5 +79,20 @@ public class ExcelSheetParser {
 		}
 		DataCell tCell = new DataCell(cellType, value);
 		return tCell;
+	}
+
+	private DataCell[] parseRow(Row row) {
+		if(row == null){
+			return null;
+		}
+		int firstCol = props.getFirstCol(row.getFirstCellNum());
+		int lastCol = props.getLastCol(row.getLastCellNum());
+
+		DataCell[] tableRow = new DataCell[lastCol - firstCol];
+		int colCounter = 0;
+		for (int colIdx = firstCol; colIdx < lastCol; colIdx++) {
+			tableRow[colCounter++] = parseCell(row.getCell(colIdx));
+		}
+		return tableRow;
 	}
 }

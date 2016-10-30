@@ -14,28 +14,13 @@ import java.util.Date;
 
 public class ExcelSheetWriter {
 
-	private Data table;
 	private Sheet sheet;
+	private Data table;
 
 	public ExcelSheetWriter(Data data, Sheet sheet) {
 		super();
 		this.table = data;
 		this.sheet = sheet;
-	}
-
-	public void writeData() throws ApplicationException {
-		int rows = table.getRowsCount();
-		int cols = table.getColsCount();
-
-		Row row = null;
-		Cell cell = null;
-		for (int rowIdx = 0; rowIdx < rows; rowIdx++) {
-			row = this.sheet.createRow(rowIdx);
-			for (int colIdx = 0; colIdx < cols; colIdx++) {
-				cell = row.createCell(colIdx);
-				copyData(this.table.getCell(rowIdx, colIdx), cell);
-			}
-		}
 	}
 
 	private void copyData(DataCell data, Cell cell) {
@@ -61,6 +46,21 @@ public class ExcelSheetWriter {
 		default:
 			cell.setCellValue(String.class.cast(value));
 			break;
+		}
+	}
+
+	public void writeData() throws ApplicationException {
+		int rows = table.getRowsCount();
+		int cols = table.getColsCount();
+
+		Row row = null;
+		Cell cell = null;
+		for (int rowIdx = 0; rowIdx < rows; rowIdx++) {
+			row = this.sheet.createRow(rowIdx);
+			for (int colIdx = 0; colIdx < cols; colIdx++) {
+				cell = row.createCell(colIdx);
+				copyData(this.table.getCell(rowIdx, colIdx), cell);
+			}
 		}
 	}
 
