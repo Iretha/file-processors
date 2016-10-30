@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.smdev</groupId>
-	<artifactId>table-data-model</artifactId>
+	<artifactId>data-model</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>table-data-model</name>
+	<name>data-model</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
