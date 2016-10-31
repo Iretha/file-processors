@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.smdev</groupId>
-	<artifactId>data-model</artifactId>
+	<artifactId>sm4j-file-data</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>data-model</name>
+	<name>sm4j-file-data</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
