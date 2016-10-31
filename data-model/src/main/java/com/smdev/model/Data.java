@@ -1,6 +1,7 @@
 package com.smdev.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.smdev.exc.ModelException;
@@ -130,7 +131,8 @@ public class Data {
 	}
 
 	/**
-	 * Retrieves the row by its index. If the index is invalid, returns <code>null</code>.
+	 * Retrieves the row by its index. If the index is invalid, returns
+	 * <code>null</code>.
 	 * 
 	 * @param rowIdx
 	 *            - row number
@@ -153,12 +155,76 @@ public class Data {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		for (DataCell[] row : content) {
-			for (DataCell c : row) {
-				str.append(c.toString());
-			}
+		this.content.forEach(row -> {
+			Arrays.stream(row).forEach(col -> str.append(col.toString()));
 			str.append(NEW_LINE);
-		}
+		});
 		return str.toString();
+	}
+
+	/**
+	 * @param rowOrder
+	 * @throws ModelException
+	 */
+	public void reorderRows(int[] rowOrder) throws ModelException {
+		if (rowOrder == null || rowOrder.length != getRowsCount()) {
+			throw new ModelException("Invalid row number");
+		}
+
+		List<DataCell[]> ordered = new ArrayList<>();
+		for (int row : rowOrder) {
+			ordered.add(this.content.get(row));
+		}
+		this.content.clear();
+		this.content.addAll(ordered);
+	}
+
+	public void reorderCols(int[] colOrder) throws ModelException {
+		if (colOrder == null || colOrder.length != getColsCount()) {
+			throw new ModelException("Invalid col number");
+		}
+		DataCell[] original = null;
+		DataCell[] ordered = null;
+		for (int rowIdx = 0; rowIdx < this.content.size(); rowIdx++) {
+			original = this.content.get(rowIdx);
+			ordered = new DataCell[original.length];
+			for (int col = 0; col < original.length; col++) {
+				ordered[col] = original[colOrder[col]];
+			}
+			this.content.set(rowIdx, ordered);
+		}
+	}
+
+	/**
+	 * @param rowOrder
+	 * @throws ModelException
+	 */
+	public void swapRows(int rowIdx1, int rowIdx2) throws ModelException {
+		//TODO validation
+		DataCell[] row1 = this.content.get(rowIdx1);
+		this.content.set(rowIdx1, this.content.get(rowIdx2));
+		this.content.set(rowIdx2, row1);
+	}
+
+	public void swapCols(int colIdx1, int colIdx2) throws ModelException {
+		//TODO validation
+		DataCell tempCell = null;
+		for (DataCell[] row : this.content) {
+			tempCell = row[colIdx1];
+			row[colIdx1] = row[colIdx2];
+			row[colIdx2] = tempCell;
+		}
+	}
+	
+	public void transpose(){
+		DataCell[] row = null;
+		DataCell[] transposedRow = null;
+		for(int rowIdx = 0; rowIdx < this.content.size(); rowIdx++){
+			row = this.content.get(rowIdx);
+			transposedRow = new DataCell[this.content.size()];
+			for(int colIdx = 0; colIdx < row.length; colIdx++){
+				
+			}
+		}
 	}
 }

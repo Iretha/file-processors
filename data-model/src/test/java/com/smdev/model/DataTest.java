@@ -8,7 +8,7 @@ import org.junit.rules.ExpectedException;
 
 import com.smdev.exc.ModelException;
 
-public class TableTest {
+public class DataTest {
 
 	private Data table;
 
