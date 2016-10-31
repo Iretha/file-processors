@@ -5,10 +5,10 @@ package com.smdev.model;
  * 
  * @author Ireth
  */
-public class DataCell {
+public final class DataCell {
 
-	private static final String SEPARATOR = "#";
 	private static final String EMPTY = "";
+	private static final String SEPARATOR = "#";
 	private DataCellType type = null;
 	private Object value;
 

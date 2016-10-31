@@ -14,6 +14,14 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>smdev.local</id>
+			<name>sm4j-exc</name>
+			<url>https://github.com/Iretha/maven-repo/tree/master/maven-repo</url>
+		</repository>
+	</repositories>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -37,6 +45,11 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>com.smdev</groupId>
+			<artifactId>sm4j-exc</artifactId>
+			<version>0.0.1</version>
 		</dependency>
 	</dependencies>
 </project>

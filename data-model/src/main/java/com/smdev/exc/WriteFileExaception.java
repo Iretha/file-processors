@@ -1,5 +1,7 @@
 package com.smdev.exc;
 
+import com.sm4j.exception.ApplicationException;
+
 /**
  * Exception thrown while writing a new target file
  * 

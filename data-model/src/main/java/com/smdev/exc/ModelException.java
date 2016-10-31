@@ -1,5 +1,8 @@
 package com.smdev.exc;
 
+import com.sm4j.exception.ApplicationException;
+import com.sm4j.exception.IMessageKey;
+
 /**
  * Exception thrown while creating new data model
  * 
@@ -13,8 +16,8 @@ public class ModelException extends ApplicationException {
 	/**
 	 * @param message
 	 */
-	public ModelException(String message) {
-		super(message);
+	public ModelException(IMessageKey key, Object... params) {
+		super(key, params);
 	}
 
 }

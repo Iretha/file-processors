@@ -18,7 +18,7 @@
 		<repository>
 			<id>data-model.local</id>
 			<name>data-model</name>
-			<url>https://github.com/Iretha/simple-data-exporter/tree/master/maven-repo</url>
+			<url>https://github.com/Iretha/maven-repo/tree/master/maven-repo</url>
 		</repository>
 	</repositories>
 

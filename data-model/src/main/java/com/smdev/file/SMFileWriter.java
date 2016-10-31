@@ -2,7 +2,7 @@ package com.smdev.file;
 
 import java.io.File;
 
-import com.smdev.exc.ApplicationException;
+import com.sm4j.exception.ApplicationException;
 import com.smdev.exc.WriteFileExaception;
 import com.smdev.model.Data;
 import com.smdev.model.FileProps;
