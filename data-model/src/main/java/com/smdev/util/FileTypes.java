@@ -11,12 +11,12 @@ public enum FileTypes {
 	CSV("csv"),
 	/** TXT file type */
 	TXT("txt"),
-	/** XML file type */
-	XML("xml"),
+	/** XLS file type */
+	XLS("xls"),
 	/** XLSX file type */
 	XLSX("xlsx"),
-	/** XLS file type */
-	XLS("xls");
+	/** XML file type */
+	XML("xml");
 
 	private String extension;
 

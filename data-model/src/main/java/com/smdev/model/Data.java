@@ -1,50 +1,91 @@
 package com.smdev.model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import static com.smdev.exc.DataModelMessageKey.*;
 import com.smdev.exc.ModelException;
 
 /**
- * Model of a data, representing the content of a file. This model can be used
- * in order to export the data in various file formats: csv, txt, pdf, xlsx,
- * ect.
+ * Model, representing the content of a file. This model can be used in order to
+ * export the data in various file formats: csv, txt, pdf, xlsx, ect. The
+ * content of the imported files is also transformed into Data object. This
+ * allows users to import data from specific file type and export it's content
+ * into another file type.
  * 
  * @author Ireth
  */
-public class Data {
+public final class Data {
 
+	/** Delimiter between the lines in the implementation of toString() */
 	private static final String NEW_LINE = "\n";
 
+	/**
+	 * The content of the file is represented as {@code List<DataCell[]>}. <br>
+	 * Each element of the list represents a row from the file. <br>
+	 * Each row consists of one or more {@link DataCell}.
+	 */
 	private final List<DataCell[]> content = new ArrayList<>();
 
-	private int headerRows = 0;
+	/** Number of header colums. Default value is 0. */
 	private int headerCols = 0;
 
+	/** Number of header rows. Default value is 0. */
+	private int headerRows = 0;
+
+	/**
+	 * @param headerRows
+	 *            - Number of header rows
+	 * @param headerCols
+	 *            - Number of header colums
+	 */
 	public Data(int headerRows, int headerCols) {
 		super();
 		this.headerRows = headerRows;
 		this.headerCols = headerCols;
 	}
 
-	public int getHeaderCols() {
-		return headerCols;
+	/**
+	 * @param headerRows
+	 *            - Number of header rows
+	 * @param headerCols
+	 *            - Number of header colums
+	 * @param content
+	 *            - content of a file
+	 */
+	public Data(int headerRows, int headerCols, List<DataCell[]> content) {
+		super();
+		this.headerRows = headerRows;
+		this.headerCols = headerCols;
+		getContent().addAll(content);
 	}
 
-	public void addRow(DataCell[] cells) throws ModelException {
-		if(cells != null){
-			getContent().add(cells);	
+	/**
+	 * Adds a new row to the end of the content
+	 * 
+	 * @param cells
+	 */
+	public void addRow(DataCell[] cells) {
+		if (cells != null) {
+			getContent().add(cells);
 		}
 	}
 
+	/**
+	 * Adds a new row to the end of the content
+	 * 
+	 * @param type
+	 * @param values
+	 * @throws ModelException
+	 */
 	public void addRow(DataCellType type, Object... values) throws ModelException {
-		if(values == null){
+		if (values == null) {
 			return;
 		}
-		
-		int rowNum = getRowsCount();
-		if (rowNum != 0 && getColsCount() != values.length) {
-			throw new ModelException("Invalid Row!");
+
+		if (getRowsCount() != 0 && getColsCount() != values.length) {
+			throw new ModelException(inv_row_values, getColsCount());
 		}
 
 		int colNum = 0;
@@ -56,36 +97,78 @@ public class Data {
 		getContent().add(row);
 	}
 
-	public DataCell getCell(int row, int col) throws ModelException {
-		if (row < 0 || row >= getRowsCount()) {
-			throw new ModelException("Invalid row idx!");
+	/**
+	 * Returns the data cell, placed on the given position
+	 * 
+	 * @param rowIdx
+	 *            - row index
+	 * @param colIdx
+	 *            - col index
+	 * @return - data cell
+	 * @throws ModelException
+	 *             - thrown if the given row or col index is invalid
+	 */
+	public DataCell getCell(int rowIdx, int colIdx) throws ModelException {
+		if (rowIdx < 0 || rowIdx >= getRowsCount()) {
+			throw new ModelException(inv_arg, "rowIdx");
 		}
 
-		if (col < 0 || col >= getColsCount()) {
-			throw new ModelException("Invalid col idx!");
+		if (colIdx < 0 || colIdx >= getColsCount()) {
+			throw new ModelException(inv_arg, "colIdx");
 		}
-		return getContent().get(row)[col];
+		return getContent().get(rowIdx)[colIdx];
 	}
 
+	/**
+	 * @return number of columns
+	 */
 	public int getColsCount() {
-		return getContent().isEmpty() ? 0 : getContent().get(0).length;
+		return getContent().isEmpty() ? 0 : getImmutableContent().get(0).length;
 	}
 
-	public List<DataCell[]> getContent() {
+	/**
+	 * @return returns a copy of the content
+	 */
+	private List<DataCell[]> getContent() {
 		return this.content;
 	}
 
+	public int getHeaderCols() {
+		return this.headerCols;
+	}
+
+	/**
+	 * @return number of header rows
+	 */
 	public int getHeaderRows() {
 		return this.headerRows;
 	}
 
-	public DataCell[] getRow(int row) {
-		if(row > -1 && row < getContent().size()){
-			return getContent().get(row);
+	/**
+	 * @return returns a copy of the content
+	 */
+	public List<DataCell[]> getImmutableContent() {
+		return new ArrayList<DataCell[]>(getContent());
+	}
+
+	/**
+	 * Retrieves the row by its index. If the index is invalid, returns
+	 * <code>null</code>.
+	 * 
+	 * @param rowIdx
+	 *            - row number
+	 * @return row - the row at the given index
+	 */
+	public DataCell[] getRow(int rowIdx) {
+		if (rowIdx > -1 && rowIdx < getContent().size()) {
+			return getContent().get(rowIdx);
 		}
 		return null;
 	}
 
+	/**
+	 * @return number of rows
+	 */
 	public int getRowsCount() {
 		return getContent().size();
 	}
@@ -93,12 +176,11 @@ public class Data {
 	@Override
 	public String toString() {
 		StringBuilder str = new StringBuilder();
-		for (DataCell[] row : content) {
-			for (DataCell c : row) {
-				str.append(c.toString());
-			}
+		getContent().forEach(row -> {
+			Arrays.stream(row).forEach(col -> str.append(col.toString()));
 			str.append(NEW_LINE);
-		}
+		});
 		return str.toString();
 	}
+
 }

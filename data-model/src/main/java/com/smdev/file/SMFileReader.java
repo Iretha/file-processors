@@ -1,8 +1,8 @@
-package com.smdev.processor;
+package com.smdev.file;
 
 import java.io.File;
 
-import com.smdev.exc.ApplicationException;
+import com.sm4j.exception.ApplicationException;
 import com.smdev.exc.ModelException;
 import com.smdev.exc.ReadFileException;
 import com.smdev.model.Data;
@@ -24,7 +24,7 @@ public interface SMFileReader<P extends FileProps> {
 	 *            - properties needed for parsing the content
 	 * @param file
 	 *            - file to read
-	 * @return table - parsed file data
+	 * @return data - parsed file data
 	 * @throws ReadFileException
 	 * @throws ModelException
 	 */

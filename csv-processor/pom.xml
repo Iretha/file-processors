@@ -16,9 +16,9 @@
 
 	<repositories>
 		<repository>
-			<id>data-model.local</id>
-			<name>data-model</name>
-			<url>https://github.com/Iretha/simple-data-exporter/tree/master/maven-repo</url>
+			<id>smdev.local</id>
+			<name>sm4j-file-data</name>
+			<url>https://github.com/Iretha/maven-repo/tree/master/maven-repo</url>
 		</repository>
 	</repositories>
 
@@ -53,7 +53,7 @@
 		</dependency>
 		<dependency>
 			<groupId>com.smdev</groupId>
-			<artifactId>table-data-model</artifactId>
+			<artifactId>sm4j-file-data</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 	</dependencies>

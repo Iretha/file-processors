@@ -6,7 +6,7 @@ import java.math.BigInteger;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.smdev.exc.ApplicationException;
+import com.sm4j.exception.ApplicationException;
 import com.smdev.model.Data;
 
 import org.junit.Assert;
