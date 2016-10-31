@@ -42,7 +42,7 @@ public class DataTest {
 			this.table.addRow(DataCellType.BIGINTEGER, 1, 2);
 			fail("Expected exception not occured");
 		} catch (ModelException e) {
-			//
+			// it's expected
 		}
 	}
 

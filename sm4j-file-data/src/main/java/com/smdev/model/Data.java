@@ -11,7 +11,7 @@ import com.smdev.exc.ModelException;
  * Model, representing the content of a file. This model can be used in order to
  * export the data in various file formats: csv, txt, pdf, xlsx, ect. The
  * content of the imported files is also transformed into Data object. This
- * allows users to import data from specific file type and export it's content
+ * allows users to import data from specific file type and export its content
  * into another file type.
  * 
  * @author Ireth
@@ -123,7 +123,7 @@ public final class Data {
 	 * @return number of columns
 	 */
 	public int getColsCount() {
-		return getContent().isEmpty() ? 0 : getImmutableContent().get(0).length;
+		return getContent().isEmpty() ? 0 : getContentCopy().get(0).length;
 	}
 
 	/**
@@ -147,8 +147,12 @@ public final class Data {
 	/**
 	 * @return returns a copy of the content
 	 */
-	public List<DataCell[]> getImmutableContent() {
-		return new ArrayList<DataCell[]>(getContent());
+	public List<DataCell[]> getContentCopy() {
+		List<DataCell[]> copy = new ArrayList<>();
+		for(DataCell[] r: getContent()){
+			copy.add(Arrays.copyOf(r, r.length));
+		}
+		return copy;
 	}
 
 	/**
