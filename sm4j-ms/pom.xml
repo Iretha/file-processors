@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.smdev</groupId>
-	<artifactId>ms-processor</artifactId>
+	<artifactId>sm4j-ms</artifactId>
 	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
-	<name>ms-processor</name>
+	<name>sm4j-ms</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
