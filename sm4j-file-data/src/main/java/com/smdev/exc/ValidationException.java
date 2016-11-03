@@ -5,7 +5,7 @@ import com.sm4j.exception.IMessageKey;
 
 /**
  * Application thrown by handling the content of a file
- * 
+ *
  * @author Ireth
  */
 public class ValidationException extends ApplicationException {

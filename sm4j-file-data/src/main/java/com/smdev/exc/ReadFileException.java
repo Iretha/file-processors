@@ -4,7 +4,7 @@ import com.sm4j.exception.ApplicationException;
 
 /**
  * Exception thrown while reading a source file
- * 
+ *
  * @author Ireth
  */
 public class ReadFileException extends ApplicationException {

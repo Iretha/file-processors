@@ -2,7 +2,7 @@ package com.smdev.util;
 
 /**
  * Supported file types
- * 
+ *
  * @author Ireth
  */
 public enum FileTypes {
@@ -25,7 +25,7 @@ public enum FileTypes {
 	}
 
 	public String getExtension() {
-		return extension;
+		return this.extension;
 	}
 
 }

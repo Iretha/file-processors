@@ -39,47 +39,46 @@ public class ExcelProps extends FileProps {
 	}
 
 	public int getFirstCol(short defaultValue) {
-		if (firstCol == null || firstCol < defaultValue) {
+		if (this.firstCol == null || this.firstCol < defaultValue) {
 			return defaultValue;
 		}
-		return firstCol;
+		return this.firstCol;
 	}
 
 	public int getFirstRow(int defaultValue) {
-		if (firstRow == null || firstRow < defaultValue) {
+		if (this.firstRow == null || this.firstRow < defaultValue) {
 			return defaultValue;
 		}
-		return this.firstRow == null ? defaultValue : firstRow;
+		return this.firstRow == null ? defaultValue : this.firstRow;
 	}
 
 	public int getHeaderCols() {
-		return headerCols;
+		return this.headerCols;
 	}
 
 	public int getHeaderRows() {
-		return headerRows;
+		return this.headerRows;
 	}
 
 	/**
 	 * Starts from 0, returns <b>PLUS 1 </b>
-	 * 
+	 *
 	 * @param defaultValue
 	 * @return
 	 */
 	public int getLastCol(short defaultValue) {
-		if (lastCol == null || lastCol > defaultValue) {
+		if (this.lastCol == null || this.lastCol > defaultValue) {
 			return defaultValue;
 		}
-		return lastCol == null ? defaultValue : lastCol;
+		return this.lastCol == null ? defaultValue : this.lastCol;
 	}
 
 	public int getLastRow(int defaultValue) {
-		if (lastRow == null || lastRow > defaultValue) {
+		if (this.lastRow == null || this.lastRow > defaultValue) {
 			return defaultValue;
 		}
-		return lastRow == null ? defaultValue : this.lastRow;
+		return this.lastRow == null ? defaultValue : this.lastRow;
 	}
-
 
 	public boolean isXlsxFormat() {
 		return getFileType().equals(FileTypes.XLSX);
@@ -91,7 +90,7 @@ public class ExcelProps extends FileProps {
 
 	/**
 	 * Index starts from 0.
-	 * 
+	 *
 	 * @param firstRow
 	 */
 	public void setFirstRow(Integer firstRow) {
@@ -112,13 +111,13 @@ public class ExcelProps extends FileProps {
 
 	/**
 	 * Index starts from 0.
-	 * 
+	 *
 	 * @param lastRow
 	 */
 	public void setLastRow(Integer lastRow) {
 		this.lastRow = lastRow;
 	}
-	
+
 	public void setXlsxFormat(boolean xlsxFormat) {
 		setFileType(xlsxFormat ? FileTypes.XLSX : FileTypes.XLS);
 	}

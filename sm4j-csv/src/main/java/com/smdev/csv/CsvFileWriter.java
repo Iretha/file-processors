@@ -12,11 +12,12 @@ import com.opencsv.CSVWriter;
 import com.sm4j.exception.ApplicationException;
 import com.smdev.exc.WriteFileExaception;
 import com.smdev.file.SMFileWriter;
-import com.smdev.model.DataCell;
 import com.smdev.model.Data;
+import com.smdev.model.DataCell;
 
 /**
  * Implementation of a CSV file writer.
+ * 
  * @author Ireth
  */
 public class CsvFileWriter implements SMFileWriter<CsvProps> {
@@ -29,7 +30,8 @@ public class CsvFileWriter implements SMFileWriter<CsvProps> {
 		char quote = props.getQuote();
 		boolean exportHeaders = props.getExportHeaders();
 
-		try (CSVWriter writer = new CSVWriter(new FileWriter(filePath), separator, quote, escape);) {
+		try (CSVWriter writer = new CSVWriter(new FileWriter(filePath), separator, quote,
+				escape);) {
 			int headerRows = table.getHeaderRows();
 			int rows = table.getRowsCount();
 			int cols = table.getColsCount();

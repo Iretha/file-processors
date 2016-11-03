@@ -1,15 +1,17 @@
 package com.smdev.ms.excel;
 
 import java.math.BigDecimal;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellType;
 import org.apache.poi.ss.usermodel.DateUtil;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
+
 import com.smdev.exc.ModelException;
+import com.smdev.model.Data;
 import com.smdev.model.DataCell;
 import com.smdev.model.DataCellType;
-import com.smdev.model.Data;
 
 public class ExcelSheetParser {
 
@@ -25,12 +27,12 @@ public class ExcelSheetParser {
 	}
 
 	public Data parse() throws ModelException {
-		this.table = new Data(props.getHeaderRows(), props.getHeaderCols());
-		int firstRow = props.getFirstRow(sheet.getFirstRowNum());
-		int lastRow = props.getLastRow(sheet.getLastRowNum());
+		this.table = new Data(this.props.getHeaderRows(), this.props.getHeaderCols());
+		int firstRow = this.props.getFirstRow(this.sheet.getFirstRowNum());
+		int lastRow = this.props.getLastRow(this.sheet.getLastRowNum());
 		DataCell[] tableRow = null;
 		for (int rowIdx = firstRow; rowIdx <= lastRow; rowIdx++) {
-			tableRow = parseRow(sheet.getRow(rowIdx));
+			tableRow = parseRow(this.sheet.getRow(rowIdx));
 			this.table.addRow(tableRow);
 		}
 		return this.table;
@@ -39,7 +41,7 @@ public class ExcelSheetParser {
 	/**
 	 * Cell.getCellType will be changed in version 4.0. Instead int it will
 	 * return enum CellType.
-	 * 
+	 *
 	 * @param rowNum
 	 * @param colNum
 	 * @param cell
@@ -82,11 +84,11 @@ public class ExcelSheetParser {
 	}
 
 	private DataCell[] parseRow(Row row) {
-		if(row == null){
+		if (row == null) {
 			return null;
 		}
-		int firstCol = props.getFirstCol(row.getFirstCellNum());
-		int lastCol = props.getLastCol(row.getLastCellNum());
+		int firstCol = this.props.getFirstCol(row.getFirstCellNum());
+		int lastCol = this.props.getLastCol(row.getLastCellNum());
 
 		DataCell[] tableRow = new DataCell[lastCol - firstCol];
 		int colCounter = 0;

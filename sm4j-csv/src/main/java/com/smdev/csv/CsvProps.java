@@ -5,7 +5,7 @@ import com.smdev.util.FileTypes;
 
 /**
  * Specific CSV table properties, extending the {@link FileProps}
- * 
+ *
  * <table>
  * <tr>
  * <th>Property name</th>
@@ -45,7 +45,7 @@ import com.smdev.util.FileTypes;
  * file</td>
  * </tr>
  * </table>
- * 
+ *
  * @author Ireth
  */
 public class CsvProps extends FileProps {
@@ -79,23 +79,23 @@ public class CsvProps extends FileProps {
 	}
 
 	public char getEscape() {
-		return escape;
+		return this.escape;
 	}
 
 	public boolean getExportHeaders() {
-		return exportHeaders;
+		return this.exportHeaders;
 	}
 
 	public char getQuote() {
-		return quote;
+		return this.quote;
 	}
 
 	public char getSeparator() {
-		return separator;
+		return this.separator;
 	}
 
 	public int getSkipFirstRows() {
-		return skipFirstRows;
+		return this.skipFirstRows;
 	}
 
 	public void setEscape(char escape) {
@@ -117,7 +117,7 @@ public class CsvProps extends FileProps {
 	public void setSkipFirstRows(int skipFirstRows) {
 		this.skipFirstRows = skipFirstRows;
 	}
-	
+
 	public void setTxtFileType(boolean txt) {
 		super.setFileType(txt ? FileTypes.TXT : FileTypes.CSV);
 	}
