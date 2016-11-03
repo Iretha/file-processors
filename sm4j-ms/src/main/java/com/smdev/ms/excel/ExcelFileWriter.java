@@ -22,10 +22,10 @@ public class ExcelFileWriter implements SMFileWriter<ExcelProps> {
 		File file = null;
 		try {
 			workbook = new XSSFWorkbook();
-			
+
 			ExcelSheetWriter sheetWriter = new ExcelSheetWriter(data, workbook.createSheet());
 			sheetWriter.writeData();
-			
+
 			fileOut = new FileOutputStream(props.getFileName());
 			workbook.write(fileOut);
 			file = new File(props.getFileName());

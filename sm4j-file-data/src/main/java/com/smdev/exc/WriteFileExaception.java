@@ -4,7 +4,7 @@ import com.sm4j.exception.ApplicationException;
 
 /**
  * Exception thrown while writing a new target file
- * 
+ *
  * @author Ireth
  */
 public class WriteFileExaception extends ApplicationException {

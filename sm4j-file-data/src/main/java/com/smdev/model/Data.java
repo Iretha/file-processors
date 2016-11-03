@@ -1,10 +1,12 @@
 package com.smdev.model;
 
+import static com.smdev.exc.DataModelMessageKey.inv_arg;
+import static com.smdev.exc.DataModelMessageKey.inv_row_values;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.smdev.exc.DataModelMessageKey.*;
 import com.smdev.exc.ModelException;
 
 /**
@@ -13,7 +15,7 @@ import com.smdev.exc.ModelException;
  * content of the imported files is also transformed into Data object. This
  * allows users to import data from specific file type and export its content
  * into another file type.
- * 
+ *
  * @author Ireth
  */
 public final class Data {
@@ -63,7 +65,7 @@ public final class Data {
 
 	/**
 	 * Adds a new row to the end of the content
-	 * 
+	 *
 	 * @param cells
 	 */
 	public void addRow(DataCell[] cells) {
@@ -74,7 +76,7 @@ public final class Data {
 
 	/**
 	 * Adds a new row to the end of the content
-	 * 
+	 *
 	 * @param type
 	 * @param values
 	 * @throws ModelException
@@ -99,7 +101,7 @@ public final class Data {
 
 	/**
 	 * Returns the data cell, placed on the given position
-	 * 
+	 *
 	 * @param rowIdx
 	 *            - row index
 	 * @param colIdx
@@ -133,6 +135,17 @@ public final class Data {
 		return this.content;
 	}
 
+	/**
+	 * @return returns a copy of the content
+	 */
+	public List<DataCell[]> getContentCopy() {
+		List<DataCell[]> copy = new ArrayList<>();
+		for (DataCell[] r : getContent()) {
+			copy.add(Arrays.copyOf(r, r.length));
+		}
+		return copy;
+	}
+
 	public int getHeaderCols() {
 		return this.headerCols;
 	}
@@ -145,20 +158,9 @@ public final class Data {
 	}
 
 	/**
-	 * @return returns a copy of the content
-	 */
-	public List<DataCell[]> getContentCopy() {
-		List<DataCell[]> copy = new ArrayList<>();
-		for(DataCell[] r: getContent()){
-			copy.add(Arrays.copyOf(r, r.length));
-		}
-		return copy;
-	}
-
-	/**
 	 * Retrieves the row by its index. If the index is invalid, returns
 	 * <code>null</code>.
-	 * 
+	 *
 	 * @param rowIdx
 	 *            - row number
 	 * @return row - the row at the given index

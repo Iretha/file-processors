@@ -9,7 +9,7 @@ import com.smdev.model.FileProps;
 
 /**
  * Interface used for writing different file types.
- * 
+ *
  * @author Ireth
  * @param <P>
  *            - the type of the concrete table properties
@@ -17,7 +17,7 @@ import com.smdev.model.FileProps;
 public interface SMFileWriter<P extends FileProps> {
 	/**
 	 * Writes the given {@link Data} into file.
-	 * 
+	 *
 	 * @param props
 	 *            - properties needed for writing the file
 	 * @param data

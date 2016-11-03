@@ -137,7 +137,7 @@ public class ContentHandlerTest {
 			Assert.assertEquals(original.getCell(0, 2), ordered.getCell(2, 0));
 			Assert.assertEquals(original.getCell(1, 2), ordered.getCell(2, 1));
 			Assert.assertEquals(original.getCell(2, 2), ordered.getCell(2, 2));
-			
+
 			// headers
 			Assert.assertEquals(original.getHeaderCols(), ordered.getHeaderRows());
 			Assert.assertEquals(original.getHeaderRows(), ordered.getHeaderCols());

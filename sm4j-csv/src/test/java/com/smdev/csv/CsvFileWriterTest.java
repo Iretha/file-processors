@@ -13,8 +13,8 @@ public class CsvFileWriterTest {
 	private String destinationDir = null;
 	private Data table = null;
 	private CsvFileWriter writer = null;
-	
-	private File resolveFile(String name){
+
+	private File resolveFile(String name) {
 		return new File(getClass().getClassLoader().getResource(name).getFile());
 	}
 
@@ -31,7 +31,7 @@ public class CsvFileWriterTest {
 		}
 		this.destinationDir = file.getParentFile().getAbsolutePath();
 	}
-	
+
 	@Test
 	public void testWriteCsvWithComma() {
 
@@ -40,8 +40,8 @@ public class CsvFileWriterTest {
 			props.setName(this.destinationDir + "/comma2");
 			props.setSeparator(',');
 			props.setExportHeaders(true);
-			//props.setEscape('\'');
-			
+			// props.setEscape('\'');
+
 			File file = this.writer.write(props, this.table);
 			System.out.println("File => " + file.getAbsolutePath());
 		} catch (Exception e) {
@@ -58,14 +58,14 @@ public class CsvFileWriterTest {
 			props.setSeparator(';');
 			props.setExportHeaders(true);
 			props.setEscape('\'');
-			
+
 			File file = this.writer.write(props, this.table);
 			System.out.println("File => " + file.getAbsolutePath());
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testWriteCsvWithTab() {
 
@@ -74,7 +74,7 @@ public class CsvFileWriterTest {
 			props.setName(this.destinationDir + "/tab");
 			props.setSeparator('\t');
 			props.setExportHeaders(true);
-			
+
 			File file = this.writer.write(props, this.table);
 			System.out.println("File => " + file.getAbsolutePath());
 		} catch (Exception e) {
@@ -91,7 +91,7 @@ public class CsvFileWriterTest {
 			props.setSeparator(',');
 			props.setExportHeaders(true);
 			props.setTxtFileType(true);
-			
+
 			File file = this.writer.write(props, this.table);
 			System.out.println("File => " + file.getAbsolutePath());
 		} catch (Exception e) {

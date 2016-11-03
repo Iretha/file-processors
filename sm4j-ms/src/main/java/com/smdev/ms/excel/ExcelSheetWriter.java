@@ -1,5 +1,9 @@
 package com.smdev.ms.excel;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.util.Date;
+
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -8,10 +12,6 @@ import com.sm4j.exception.ApplicationException;
 import com.smdev.model.Data;
 import com.smdev.model.DataCell;
 import com.smdev.model.DataCellType;
-
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.util.Date;
 
 public class ExcelSheetWriter {
 
@@ -51,8 +51,8 @@ public class ExcelSheetWriter {
 	}
 
 	public void writeData() throws ApplicationException {
-		int rows = table.getRowsCount();
-		int cols = table.getColsCount();
+		int rows = this.table.getRowsCount();
+		int cols = this.table.getColsCount();
 
 		Row row = null;
 		Cell cell = null;

@@ -9,14 +9,14 @@ import com.opencsv.CSVReader;
 import com.sm4j.exception.ApplicationException;
 import com.smdev.exc.ReadFileException;
 import com.smdev.file.SMFileReader;
-import com.smdev.model.DataCellType;
 import com.smdev.model.Data;
+import com.smdev.model.DataCellType;
 
 /**
  * Implementation of a CSV file reader.
- * 
+ *
  * Example usage:
- * 
+ *
  * @author Ireth
  */
 public class CsvFileReader implements SMFileReader<CsvProps> {

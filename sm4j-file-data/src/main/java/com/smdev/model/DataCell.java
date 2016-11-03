@@ -2,7 +2,7 @@ package com.smdev.model;
 
 /**
  * Model of a data cell with value and type.
- * 
+ *
  * @author Ireth
  */
 public final class DataCell {
@@ -28,14 +28,14 @@ public final class DataCell {
 	 * @return type of the cell data
 	 */
 	public DataCellType getType() {
-		return type;
+		return this.type;
 	}
 
 	/**
 	 * @return data, stored in the cell
 	 */
 	public Object getValue() {
-		return value;
+		return this.value;
 	}
 
 	@Override

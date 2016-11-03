@@ -22,7 +22,7 @@ import com.smdev.util.FileTypes;
  * <td>FileTypes.*</td>
  * </tr>
  * </table>
- * 
+ *
  * @author Ireth
  */
 public abstract class FileProps {
@@ -40,11 +40,11 @@ public abstract class FileProps {
 	}
 
 	public FileTypes getFileType() {
-		return fileType;
+		return this.fileType;
 	}
 
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	protected void setFileType(FileTypes fileType) {

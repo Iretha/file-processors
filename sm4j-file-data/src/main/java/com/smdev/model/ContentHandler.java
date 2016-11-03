@@ -1,24 +1,26 @@
 package com.smdev.model;
 
+import static com.smdev.exc.DataModelMessageKey.arg_null;
+import static com.smdev.exc.DataModelMessageKey.inv_arg;
+import static com.smdev.exc.DataModelMessageKey.inv_arr_length;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import com.sm4j.exception.ApplicationException;
-import static com.smdev.exc.DataModelMessageKey.*;
-
 import com.smdev.exc.DataModelMessageKey;
 import com.smdev.exc.ValidationException;
 
 /**
  * Different operations for handling content data
- * 
+ *
  * @author Ireth
  */
 public final class ContentHandler {
 
 	/**
 	 * Returns new instance of a data object with the given parameters
-	 * 
+	 *
 	 * @param headerRows
 	 *            - total number of header rows
 	 * @param headerCols
@@ -39,7 +41,7 @@ public final class ContentHandler {
 	 * - column with index 0 will go on second position <br>
 	 * - column with index 1 will go on third position <br>
 	 * - column with index 2 will go on first position <br>
-	 * 
+	 *
 	 * @param data
 	 *            - original data
 	 * @param colOrder
@@ -76,7 +78,7 @@ public final class ContentHandler {
 	 * - row with index 0 will go on second position <br>
 	 * - row with index 1 will go on third position <br>
 	 * - row with index 2 will go on first position <br>
-	 * 
+	 *
 	 * @param data
 	 *            - original data
 	 * @param rowOrder
@@ -101,7 +103,7 @@ public final class ContentHandler {
 
 	/**
 	 * Swaps the position of the given columns. Index starts from 0.
-	 * 
+	 *
 	 * @param data
 	 *            - original data
 	 * @param colIdx1
@@ -130,7 +132,7 @@ public final class ContentHandler {
 
 	/**
 	 * Swaps the position of the given rows. Index starts from 0.
-	 * 
+	 *
 	 * @param data
 	 *            - original data
 	 * @param rowIdx1
@@ -156,6 +158,7 @@ public final class ContentHandler {
 
 	/**
 	 * Transposes the matrix. Rows transform into colums and vice versa.
+	 * 
 	 * @param data
 	 *            - original data
 	 * @return new instance of the data with the required changes

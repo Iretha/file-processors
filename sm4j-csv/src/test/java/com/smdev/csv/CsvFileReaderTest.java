@@ -12,7 +12,7 @@ public class CsvFileReaderTest {
 
 	private CsvFileReader reader = null;
 
-	private File resolveFile(String name){
+	private File resolveFile(String name) {
 		return new File(getClass().getClassLoader().getResource(name).getFile());
 	}
 
@@ -70,7 +70,7 @@ public class CsvFileReaderTest {
 			Assert.fail(e.getMessage());
 		}
 	}
-	
+
 	@Test
 	public void testReadCsvWithSemicolon() {
 		File file = resolveFile("semicolon.csv");

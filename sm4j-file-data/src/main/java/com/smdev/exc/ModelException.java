@@ -5,7 +5,7 @@ import com.sm4j.exception.IMessageKey;
 
 /**
  * Exception thrown while creating new data model
- * 
+ *
  * @author Ireth
  */
 public class ModelException extends ApplicationException {

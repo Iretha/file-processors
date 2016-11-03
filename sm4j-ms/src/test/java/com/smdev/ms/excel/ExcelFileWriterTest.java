@@ -9,12 +9,12 @@ import org.junit.Test;
 import com.smdev.model.Data;
 
 public class ExcelFileWriterTest {
-	
+
 	private String destinationDir = null;
 	private Data table = null;
 	private ExcelFileWriter writer = null;
-	
-	private File resolveFile(String name){
+
+	private File resolveFile(String name) {
 		return new File(getClass().getClassLoader().getResource(name).getFile());
 	}
 
@@ -35,14 +35,13 @@ public class ExcelFileWriterTest {
 		}
 		this.destinationDir = file.getParentFile().getAbsolutePath();
 	}
-	
 
 	@Test
-	public void testWrite(){
+	public void testWrite() {
 		try {
 			ExcelProps props = new ExcelProps();
 			props.setName(this.destinationDir + "/written1");
-			
+
 			File file = this.writer.write(props, this.table);
 			System.out.println("File => " + file.getAbsolutePath());
 		} catch (Exception e) {
